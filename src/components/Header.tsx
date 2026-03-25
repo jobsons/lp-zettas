@@ -5,14 +5,14 @@ import Image from 'next/image';
 export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/80 backdrop-blur-md">
-      <div className="container mx-auto px-4 h-20 flex items-center justify-between">
+      <div className="container mx-auto px-4 h-24 md:h-28 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
           <Image 
             src="/logosemfundo.png" 
             alt="Zettas - Automação Inteligente para WhatsApp" 
-            width={160} 
-            height={60} 
-            className="h-10 md:h-14 w-auto object-contain"
+            width={320} 
+            height={120} 
+            className="h-20 md:h-24 w-auto object-contain"
             priority
           />
         </Link>
