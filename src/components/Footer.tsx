@@ -29,9 +29,9 @@ export default function Footer() {
               <Image 
                 src="/logosemfundo.png" 
                 alt="Zettas" 
-                width={300} 
-                height={110} 
-                className="h-20 md:h-24 w-auto object-contain"
+                width={480} 
+                height={180} 
+                className="h-32 md:h-40 w-auto object-contain"
               />
             </Link>
             <p className="text-graphite-800 text-sm max-w-xs text-center md:text-left">
