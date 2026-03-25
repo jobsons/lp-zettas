@@ -33,7 +33,7 @@ export default function LeadCapture() {
               Teste nossa demonstração interativa agora mesmo. Preencha alguns dados básicos do seu negócio e agende uma conversa com nossos especialistas.
             </p>
 
-            <Link href="https://app.yayforms.com/workspaces/69c2f0638b5cbfe4d507090b/forms" target="_blank" rel="noopener noreferrer">
+            <Link href="https://zettas.yayforms.link/lm8yBmR" target="_blank" rel="noopener noreferrer">
               <Button size="lg" className="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-lg h-16 px-10 rounded-full shadow-[0_0_40px_rgba(16,185,129,0.4)] hover:shadow-[0_0_60px_rgba(16,185,129,0.6)] transition-all duration-300">
                 Teste a demonstração
                 <ArrowRight className="ml-2 w-6 h-6" />

@@ -2,12 +2,12 @@
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Bot, Zap, TrendingUp } from "lucide-react";
+import { ArrowRight, Bot, Zap, TrendingUp, Rocket, Headset, Award, GraduationCap } from "lucide-react";
 import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden">
+    <section className="relative pt-32 pb-16 md:pt-48 md:pb-24 overflow-hidden">
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-navy-900/10 via-background to-background"></div>
       
       <div className="container mx-auto px-4 text-center">
@@ -57,19 +57,37 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.6 }}
-          className="mt-16 pt-8 border-t border-gray-200 flex flex-col md:flex-row items-center justify-center gap-8 text-sm font-medium text-graphite-800"
+          className="mt-10"
         >
-          <div className="flex items-center gap-2">
-            <Zap className="w-5 h-5 text-emerald-500" />
-            <span>Respostas Imediatas</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <TrendingUp className="w-5 h-5 text-emerald-500" />
-            <span>Aumento de ROI</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Bot className="w-5 h-5 text-emerald-500" />
-            <span>Atendimento 24/7</span>
+          <div className="mx-auto max-w-4xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-white/70 backdrop-blur rounded-xl p-4 border border-gray-200/80 shadow-sm text-sm font-medium text-graphite-800">
+            <div className="flex items-center gap-2">
+              <Zap className="w-5 h-5 text-emerald-500" />
+              <span>Respostas Imediatas</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <TrendingUp className="w-5 h-5 text-emerald-500" />
+              <span>Aumento de ROI</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Bot className="w-5 h-5 text-emerald-500" />
+              <span>Atendimento 24/7</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Rocket className="w-5 h-5 text-emerald-500" />
+              <span>Implementação rápida</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Headset className="w-5 h-5 text-emerald-500" />
+              <span>Suporte dedicado</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Award className="w-5 h-5 text-emerald-500" />
+              <span>Resultados no primeiro mês</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <GraduationCap className="w-5 h-5 text-emerald-500" />
+              <span>Treinamento incluso</span>
+            </div>
           </div>
         </motion.div>
       </div>
