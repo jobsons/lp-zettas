@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="relative pt-32 pb-16 md:pt-48 md:pb-24 overflow-hidden">
+    <section className="relative pt-28 sm:pt-32 pb-16 md:pt-44 md:pb-24 overflow-hidden">
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-navy-900/10 via-background to-background"></div>
       
       <div className="container mx-auto px-4 text-center">
