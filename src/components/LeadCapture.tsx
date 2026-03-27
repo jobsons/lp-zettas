@@ -12,7 +12,7 @@ export default function LeadCapture() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="max-w-4xl mx-auto bg-gradient-to-br from-navy-900 to-graphite-900 rounded-3xl p-8 md:p-16 text-center text-white shadow-2xl relative overflow-hidden"
+          className="max-w-4xl mx-auto bg-gradient-to-br from-navy-900 to-graphite-900 rounded-3xl p-6 sm:p-8 md:p-16 text-center text-white shadow-2xl relative overflow-hidden"
         >
           {/* Decoração de fundo */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/20 rounded-full blur-3xl -mr-32 -mt-32"></div>
@@ -27,7 +27,7 @@ export default function LeadCapture() {
               Pronto para colocar sua operação no piloto automático?
             </h2>
             
-            <p className="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed">
               Solicite uma demonstração exclusiva. Preencha o formulário para que possamos entender seu cenário e, na nossa reunião, apresentaremos o desenho da solução ideal para a sua empresa escalar.
             </p>
 
@@ -35,9 +35,10 @@ export default function LeadCapture() {
               href="https://zettas.yayforms.link/lm8yBmR"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-lg h-16 px-10 rounded-full shadow-[0_0_40px_rgba(16,185,129,0.4)] hover:shadow-[0_0_60px_rgba(16,185,129,0.6)] transition-all duration-300"
+              className="w-full sm:w-auto inline-flex items-center justify-center bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-base sm:text-lg h-14 sm:h-16 px-6 sm:px-10 rounded-full shadow-[0_0_40px_rgba(16,185,129,0.4)] hover:shadow-[0_0_60px_rgba(16,185,129,0.6)] transition-all duration-300"
             >
-              Quero meu Diagnóstico Gratuito
+              <span className="sm:hidden">Falar com Especialista</span>
+              <span className="hidden sm:inline">Quero meu Diagnóstico Gratuito</span>
               <ArrowRight className="ml-2 w-6 h-6" />
             </a>
           </div>

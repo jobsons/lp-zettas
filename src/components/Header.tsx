@@ -23,9 +23,10 @@ export default function Header() {
         <div>
           <Link
             href="#captura"
-            className="inline-flex items-center justify-center rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white font-semibold h-10 px-4 transition-colors"
+            className="inline-flex items-center justify-center rounded-full bg-emerald-500 hover:bg-emerald-600 text-white font-semibold h-10 px-4 text-sm whitespace-nowrap transition-colors"
           >
-            Solicitar Diagnóstico Gratuito
+            <span className="md:hidden">Falar com Especialista</span>
+            <span className="hidden md:inline">Solicitar Diagnóstico Gratuito</span>
           </Link>
         </div>
       </div>
