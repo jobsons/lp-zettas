@@ -30,12 +30,12 @@ export default function LeadCapture() {
             </h2>
             
             <p className="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
-              Teste nossa demonstração interativa agora mesmo. Preencha alguns dados básicos do seu negócio e agende uma conversa com nossos especialistas.
+              Solicite uma demonstração exclusiva. Preencha o formulário para que possamos entender seu cenário e, na nossa reunião, apresentaremos o desenho da solução ideal para a sua empresa escalar.
             </p>
 
             <Link href="https://zettas.yayforms.link/lm8yBmR" target="_blank" rel="noopener noreferrer">
               <Button size="lg" className="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-lg h-16 px-10 rounded-full shadow-[0_0_40px_rgba(16,185,129,0.4)] hover:shadow-[0_0_60px_rgba(16,185,129,0.6)] transition-all duration-300">
-                Teste a demonstração
+                Quero meu Diagnóstico Gratuito
                 <ArrowRight className="ml-2 w-6 h-6" />
               </Button>
             </Link>

@@ -26,23 +26,23 @@ const niches = [
       { sender: "bot", text: "Olá! Temos um horário às 14:30. Posso confirmar?" }
     ]
   },
-  {
-    id: "imobiliarias",
-    title: "Imobiliárias",
+ {
+    id: "imobiliario",
+    title: "Imobiliário & Construtoras",
     icon: Building2,
-    description: "Qualificação de leads e agendamentos automáticos.",
+    description: "Venda mais lançamentos com qualificação instantânea e agendamento de visitas.",
     benefits: [
-      "Qualificação instantânea de interesse",
-      "Agendamento de visitas integrado ao calendário",
-      "Envio automático de catálogos de imóveis",
-      "Follow-up inteligente com leads frios"
+      "Qualificação automática de perfil (Renda/Prazo)",
+      "Agendamento de visitas ao decorado integrado ao CRM",
+      "Envio imediato de tabelas, plantas e materiais de venda",
+      "Follow-up ativo de leads vindos de anúncios (Meta/Google)"
     ],
     image: "bg-blue-50",
     color: "text-blue-600",
     gradient: "from-blue-500/20 to-blue-500/5",
     chatMockup: [
-      { sender: "user", text: "Gostei do apartamento no centro." },
-      { sender: "bot", text: "Excelente escolha! Quer agendar uma visita amanhã?" }
+      { sender: "user", text: "Quero saber mais sobre o pré-lançamento." },
+      { sender: "bot", text: "Com certeza! Já enviei a planta e a tabela. Quer agendar uma visita ao decorado?" }
     ]
   },
   {
@@ -68,7 +68,7 @@ const niches = [
     id: "eventos",
     title: "Eventos & DJs",
     icon: Music,
-    description: "Atendimento automático para orçamentos (ex: Agente Bella).",
+    description: "Atendimento automático para orçamentos.",
     benefits: [
       "Orçamentos dinâmicos em tempo real",
       "Demonstração de portfólio (áudios e vídeos)",
@@ -79,8 +79,8 @@ const niches = [
     color: "text-purple-600",
     gradient: "from-purple-500/20 to-purple-500/5",
     chatMockup: [
-      { sender: "user", text: "Qual o valor para um casamento em SP?" },
-      { sender: "bot", text: "Para casamentos em SP, os pacotes começam em..." }
+      { sender: "user", text: "Oi Dj, vou casar dia 13/10, você tem disponibilidade?" },
+      { sender: "bot", text: "Parabéns pelo casamento! Deixa eu conferir... Sim, temos disponibilidade para 13/10!..." }
     ]
   }
 ];
@@ -100,7 +100,7 @@ export default function Niches() {
             Soluções sob medida para o seu setor
           </h2>
           <p className="text-lg text-graphite-800">
-            Nossa IA se adapta às necessidades específicas do seu negócio, garantindo um atendimento natural e eficiente.
+            Nossa infraestrutura Enterprise pode ser treinada para qualquer modelo de negócio. Veja alguns casos de uso abaixo:
           </p>
         </div>
 
@@ -206,6 +206,11 @@ export default function Niches() {
                   </div>
                 </div>
               </Card>
+              <div className="mt-6">
+                <div className="text-center mx-auto max-w-4xl bg-emerald-50 border border-emerald-200 text-emerald-900 rounded-xl p-4 md:p-5 font-semibold">
+                  Seu setor não está na lista? A Zettas desenvolve arquiteturas exclusivas para qualquer mercado.
+                </div>
+              </div>
             </motion.div>
           ) : null}
         </div>

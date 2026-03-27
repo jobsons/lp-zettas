@@ -24,7 +24,7 @@ export default function Header() {
         <div>
           <Link href="#captura">
             <Button className="bg-emerald-500 hover:bg-emerald-600 text-white font-semibold">
-              Teste a demonstração
+              Agende uma demonstração
             </Button>
           </Link>
         </div>

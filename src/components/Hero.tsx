@@ -18,7 +18,7 @@ export default function Hero() {
           className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 font-medium text-sm mb-8"
         >
           <Bot className="w-4 h-4" />
-          <span>O futuro do atendimento chegou</span>
+          <span>O futuro do atendimento chegou!</span>
         </motion.div>
 
         <motion.h1
@@ -47,7 +47,7 @@ export default function Hero() {
         >
           <Link href="#captura" className="w-full sm:w-auto">
             <Button size="lg" className="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-lg h-14 px-8 shadow-lg shadow-emerald-500/25">
-              Teste a demonstração
+              Agende uma demonstração
               <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
           </Link>
@@ -70,7 +70,7 @@ export default function Hero() {
             </div>
             <div className="flex items-center gap-2">
               <Bot className="w-5 h-5 text-emerald-500" />
-              <span>Atendimento 24/7</span>
+              <span>Atendimento instantâneo 24h por dia</span>
             </div>
             <div className="flex items-center gap-2">
               <Rocket className="w-5 h-5 text-emerald-500" />
