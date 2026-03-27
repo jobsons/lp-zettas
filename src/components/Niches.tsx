@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Card, CardTitle, CardDescription } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { Stethoscope, Building2, Dumbbell, Music, CheckCircle2, MessageSquare } from "lucide-react";
+import Link from "next/link";
 
 const niches = [
   {
@@ -208,7 +209,15 @@ export default function Niches() {
               </Card>
               <div className="mt-6">
                 <div className="text-center mx-auto max-w-4xl bg-emerald-50 border border-emerald-200 text-emerald-900 rounded-xl p-4 md:p-5 font-semibold">
-                  Seu setor não está na lista? A Zettas desenvolve arquiteturas exclusivas para qualquer mercado.
+                  <div>Seu setor não está na lista? A Zettas desenvolve arquiteturas exclusivas para qualquer mercado.</div>
+                  <div className="mt-3 flex items-center justify-center">
+                    <Link
+                      href="#captura"
+                      className="inline-flex items-center justify-center rounded-lg border border-emerald-300 bg-white px-3 py-1.5 text-sm font-semibold text-emerald-900 hover:bg-emerald-100 transition-colors"
+                    >
+                      Falar com um Especialista
+                    </Link>
+                  </div>
                 </div>
               </div>
             </motion.div>

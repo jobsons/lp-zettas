@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { ArrowRight, Bot, Zap, TrendingUp, Rocket, Headset, Award, GraduationCap } from "lucide-react";
 import Link from "next/link";
 
@@ -45,11 +44,12 @@ export default function Hero() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <Link href="#captura" className="w-full sm:w-auto">
-            <Button size="lg" className="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-lg h-14 px-8 shadow-lg shadow-emerald-500/25">
-              Agende uma demonstração
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
+          <Link
+            href="#captura"
+            className="w-full sm:w-auto inline-flex items-center justify-center bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-lg h-14 px-8 rounded-lg shadow-lg shadow-emerald-500/25 transition-colors"
+          >
+            Agende uma demonstração
+            <ArrowRight className="ml-2 w-5 h-5" />
           </Link>
         </motion.div>
 

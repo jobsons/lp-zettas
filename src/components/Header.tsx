@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 
 export default function Header() {
@@ -22,10 +21,11 @@ export default function Header() {
           <Link href="#metodologia" className="text-sm font-medium text-graphite-800 hover:text-emerald-500 transition-colors">Metodologia</Link>
         </nav>
         <div>
-          <Link href="#captura">
-            <Button className="bg-emerald-500 hover:bg-emerald-600 text-white font-semibold">
-              Agende uma demonstração
-            </Button>
+          <Link
+            href="#captura"
+            className="inline-flex items-center justify-center rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white font-semibold h-10 px-4 transition-colors"
+          >
+            Solicitar Diagnóstico Gratuito
           </Link>
         </div>
       </div>
