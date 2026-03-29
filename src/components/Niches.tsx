@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { Card, CardTitle, CardDescription } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { Stethoscope, Building2, Dumbbell, Music, CheckCircle2, MessageSquare } from "lucide-react";
+import { Stethoscope, Building2, Dumbbell, Music, CheckCircle2, MessageSquare, ArrowLeft, MoreVertical, Phone, Video, Smile, Mic, CheckCheck, Paperclip } from "lucide-react";
 import Link from "next/link";
 
 const niches = [
@@ -98,10 +98,10 @@ export default function Niches() {
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-4">
-            Soluções sob medida para o seu setor
+            Soluções sob medida para o seu negócio
           </h2>
           <p className="text-lg text-graphite-800">
-            Nossa infraestrutura Enterprise pode ser treinada para qualquer modelo de negócio. Veja alguns casos de uso abaixo:
+            Esqueça os chatbots engessados que irritam seus clientes. Criamos Agentes de IA únicos, treinados especificamente com as regras, tom de voz e conhecimento da sua empresa. Veja alguns casos de uso abaixo:
           </p>
         </div>
 
@@ -161,34 +161,66 @@ export default function Niches() {
                         {activeNiche.description}
                       </CardDescription>
 
-                      <div className="mt-auto bg-white/60 backdrop-blur-sm rounded-2xl p-4 shadow-sm border border-white/40">
-                        <div className="flex items-center gap-2 mb-4 pb-3 border-b border-gray-200/50">
-                          <MessageSquare className="w-4 h-4 text-graphite-800" />
-                          <span className="text-xs font-semibold text-graphite-800 uppercase tracking-wider">
-                            Demonstração ao vivo
-                          </span>
+                      {/* Chat Mockup - WhatsApp Style */}
+                      <div className="mt-8 md:mt-auto bg-[#efeae2] rounded-3xl overflow-hidden shadow-xl border border-gray-200/50 flex flex-col relative w-full max-w-sm mx-auto md:max-w-md h-[400px] md:h-auto md:min-h-[350px]">
+                        {/* Header WhatsApp */}
+                        <div className="bg-[#008069] px-3 md:px-4 py-2.5 md:py-3 flex items-center gap-2 md:gap-3 text-white z-10 shrink-0">
+                          <ArrowLeft className="w-5 h-5 opacity-90 hidden sm:block" />
+                          <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-white/20 flex items-center justify-center shrink-0">
+                            <activeNiche.icon className="w-4 h-4 md:w-6 md:h-6 text-white" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className="font-semibold text-[14px] md:text-[15px] truncate">{activeNiche.title}</div>
+                            <div className="text-[11px] md:text-[12px] opacity-90 leading-tight">online</div>
+                          </div>
+                          <div className="flex items-center gap-3 md:gap-4 opacity-90 shrink-0">
+                            <Video className="w-4 h-4 md:w-5 md:h-5 hidden sm:block" />
+                            <Phone className="w-4 h-4" />
+                            <MoreVertical className="w-4 h-4 md:w-5 md:h-5" />
+                          </div>
                         </div>
-                        <div className="space-y-3">
-                          {activeNiche.chatMockup.map((msg, idx) => (
-                            <motion.div
-                              key={`${activeNiche.id}-${idx}`}
-                              initial={{ opacity: 0, x: msg.sender === "user" ? 10 : -10 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: idx * 0.12 }}
-                              className={cn("flex", msg.sender === "user" ? "justify-end" : "justify-start")}
-                            >
-                              <div
-                                className={cn(
-                                  "max-w-[85%] rounded-2xl px-4 py-2 text-sm",
-                                  msg.sender === "user"
-                                    ? "bg-emerald-500 text-white rounded-tr-sm"
-                                    : "bg-white text-graphite-800 rounded-tl-sm shadow-sm"
-                                )}
+
+                        {/* Messages Area */}
+                        <div className="p-3 md:p-4 space-y-3 flex-1 overflow-y-auto">
+                          {activeNiche.chatMockup.map((msg, idx) => {
+                            const isUser = msg.sender === "user";
+                            return (
+                              <motion.div
+                                key={`${activeNiche.id}-${idx}`}
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: idx * 0.15 }}
+                                className={cn("flex", isUser ? "justify-end" : "justify-start")}
                               >
-                                {msg.text}
-                              </div>
-                            </motion.div>
-                          ))}
+                                <div
+                                  className={cn(
+                                    "max-w-[90%] md:max-w-[85%] px-3 pt-2 pb-1.5 text-[14px] md:text-[15px] shadow-sm relative",
+                                    isUser
+                                      ? "bg-[#d9fdd3] text-gray-800 rounded-lg rounded-tr-none"
+                                      : "bg-white text-gray-800 rounded-lg rounded-tl-none"
+                                  )}
+                                >
+                                  <div className="leading-snug pr-2">{msg.text}</div>
+                                  <div className="flex items-center justify-end gap-1 mt-0.5">
+                                    <span className="text-[10px] text-gray-500">14:30</span>
+                                    {isUser && <CheckCheck className="w-3 h-3 md:w-4 md:h-4 text-[#53bdeb]" />}
+                                  </div>
+                                </div>
+                              </motion.div>
+                            );
+                          })}
+                        </div>
+
+                        {/* Input Area WhatsApp */}
+                        <div className="bg-[#f0f2f5] px-2 md:px-3 py-2 md:py-2.5 flex items-center gap-1.5 md:gap-2 z-10 shrink-0">
+                          <Smile className="w-5 h-5 md:w-6 md:h-6 text-gray-500 shrink-0 hidden sm:block" />
+                          <Paperclip className="w-5 h-5 text-gray-500 shrink-0 mx-1 hidden sm:block" />
+                          <div className="flex-1 bg-white rounded-full px-3 md:px-4 py-2 md:py-2.5 text-[13px] md:text-[15px] text-gray-400 shadow-sm truncate">
+                            Mensagem
+                          </div>
+                          <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[#00a884] flex items-center justify-center shrink-0 shadow-sm">
+                            <Mic className="w-4 h-4 md:w-5 md:h-5 text-white" />
+                          </div>
                         </div>
                       </div>
                     </div>
