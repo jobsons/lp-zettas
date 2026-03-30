@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { Card, CardTitle, CardDescription } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { Stethoscope, Building2, Dumbbell, Music, CheckCircle2, MessageSquare, ArrowLeft, MoreVertical, Phone, Video, Smile, Mic, CheckCheck, Paperclip } from "lucide-react";
+import { Stethoscope, Building2, Dumbbell, Music, CheckCircle2, ArrowLeft, MoreVertical, Phone, Video, Smile, Mic, CheckCheck, Paperclip } from "lucide-react";
 import Link from "next/link";
 
 const niches = [

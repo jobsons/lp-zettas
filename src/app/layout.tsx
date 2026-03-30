@@ -48,7 +48,9 @@ export const metadata: Metadata = {
     images: ["/logosemfundo.png"],
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: [{ url: "/logosemfundo.png", type: "image/png" }],
+    apple: [{ url: "/logosemfundo.png", type: "image/png" }],
+    shortcut: [{ url: "/logosemfundo.png", type: "image/png" }],
   },
 };
 
