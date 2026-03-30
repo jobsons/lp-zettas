@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   description:
     "Automação inteligente e escalável para WhatsApp: atendimento 24/7, qualificação de leads e agendamentos para aumentar conversão e eficiência.",
   alternates: {
-    canonical: "/",
+    canonical: "https://zettas.ia.br",
   },
   openGraph: {
     type: "website",

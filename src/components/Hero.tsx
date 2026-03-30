@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Bot, Zap, TrendingUp, Rocket, Headset, Award, GraduationCap } from "lucide-react";
+import { ArrowRight, Bot, Zap, TrendingUp, Rocket, Headset, Award, GraduationCap, Calendar } from "lucide-react";
 import Link from "next/link";
 
 export default function Hero() {
@@ -59,18 +59,22 @@ export default function Hero() {
           transition={{ duration: 0.5, delay: 0.6 }}
           className="mt-10"
         >
-          <div className="mx-auto max-w-4xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-white/70 backdrop-blur rounded-xl p-4 border border-gray-200/80 shadow-sm text-sm font-medium text-graphite-800">
+          <div className="mx-auto max-w-4xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 bg-white/70 backdrop-blur rounded-xl p-4 border border-gray-200/80 shadow-sm text-sm font-medium text-graphite-800">
             <div className="flex items-center gap-2">
               <Zap className="w-5 h-5 text-emerald-500" />
               <span>Respostas Imediatas</span>
             </div>
             <div className="flex items-center gap-2">
               <TrendingUp className="w-5 h-5 text-emerald-500" />
-              <span>Aumento de ROI</span>
+              <span>Mais conversão</span>
             </div>
             <div className="flex items-center gap-2">
               <Bot className="w-5 h-5 text-emerald-500" />
-              <span>Atendimento instantâneo 24h por dia</span>
+              <span>Qualificação automática de leads</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Calendar className="w-5 h-5 text-emerald-500" />
+              <span>Integração com seu CRM/agenda</span>
             </div>
             <div className="flex items-center gap-2">
               <Rocket className="w-5 h-5 text-emerald-500" />
