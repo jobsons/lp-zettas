@@ -1,7 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { motion } from "framer-motion";
+import { useMemo, useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardTitle, CardDescription } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { Stethoscope, Building2, Dumbbell, Music, CheckCircle2, ArrowLeft, MoreVertical, Phone, Video, Smile, Mic, CheckCheck, Paperclip } from "lucide-react";
@@ -23,8 +23,11 @@ const niches = [
     color: "text-emerald-600",
     gradient: "from-emerald-500/20 to-emerald-500/5",
     chatMockup: [
-      { sender: "user", text: "Preciso de um encaixe para hoje!" },
-      { sender: "bot", text: "Olá! Temos um horário às 14:30. Posso confirmar?" }
+      { sender: "user", text: "Oi, preciso de um encaixe para hoje, é possível?", time: "14:30" },
+      { sender: "bot", text: "Oi, Luana! Temos um horário às 14:30. Posso confirmar?", time: "14:30" },
+      { sender: "user", text: "Que ótimo, pode sim, por favor.", time: "14:31" },
+      { sender: "bot", text: "Confirmado! ✅ Seu agendamento já está no sistema, ta bom? Mais alguma dúvida?", time: "14:31" },
+      { sender: "user", text: "Não, obrigado!", time: "14:32" }
     ]
   },
  {
@@ -42,9 +45,16 @@ const niches = [
     color: "text-blue-600",
     gradient: "from-blue-500/20 to-blue-500/5",
     chatMockup: [
-      { sender: "user", text: "Quero saber mais sobre o pré-lançamento." },
-      { sender: "bot", text: "Com certeza! Já enviei a planta e a tabela. Quer agendar uma visita ao decorado?" }
-    ]
+  { sender: "user", text: "Quero saber mais sobre o pré-lançamento.", time: "09:15" },
+  { sender: "bot", text: "Com certeza! Vou gerar o material atualizado para você agora mesmo. Só um instante...", time: "09:15" },
+  { sender: "bot", text: "📄 Planta_e_Tabela_Pre-Lancamento.pdf", time: "09:16" },
+  { sender: "bot", text: "Além do material, você gostaria de visitar o decorado este fim de semana?", time: "09:16" },
+  { sender: "user", text: "Pode ser no sábado de manhã?", time: "09:18" },
+  { sender: "bot", text: "Deixa eu conferir a agenda... 🔍", time: "09:18" },
+  { sender: "bot", text: "Conseguimos às 10h com o corretor Carlos. Pode ser esse horário?", time: "09:19" },
+  { sender: "user", text: "Perfeito, combinado!", time: "09:20" },
+  { sender: "bot", text: "Show! Agendado. Te mando um lembrete na sexta, beleza? 🏡", time: "09:20" }
+]
   },
   {
     id: "academias",
@@ -61,9 +71,13 @@ const niches = [
     color: "text-orange-600",
     gradient: "from-orange-500/20 to-orange-500/5",
     chatMockup: [
-      { sender: "bot", text: "Sentimos sua falta nos treinos desta semana!" },
-      { sender: "user", text: "Vou hoje à noite, prometo! 💪" }
-    ]
+  { sender: "bot", text: "Opa! Notamos que você ainda não apareceu para treinar essa semana. Tudo certo por aí? 🏃‍♂️", time: "18:00" },
+  { sender: "user", text: "Vou hoje à noite, prometo! 💪", time: "18:05" },
+  { sender: "bot", text: "Boa! Foco total. Só pra lembrar: hoje tem aula de spinning às 19h, hein?", time: "18:05" },
+  { sender: "user", text: "Tem vaga ainda?", time: "18:06" },
+  { sender: "bot", text: "Deixa eu ver como está o mapa de sala... 🚲", time: "18:06" },
+  { sender: "bot", text: "Tem sim! Já deixei a bike 12 reservada no seu nome. Te vejo daqui a pouco!", time: "18:07" }
+]
   },
   {
     id: "eventos",
@@ -80,18 +94,79 @@ const niches = [
     color: "text-purple-600",
     gradient: "from-purple-500/20 to-purple-500/5",
     chatMockup: [
-      { sender: "user", text: "Oi Dj, vou casar dia 13/10, você tem disponibilidade?" },
-      { sender: "bot", text: "Parabéns pelo casamento! Deixa eu conferir... Sim, temos disponibilidade para 13/10!..." }
-    ]
+  { sender: "user", text: "Oi, vou casar dia 13/10, você tem disponibilidade?", time: "20:10" },
+  { sender: "bot", text: "Parabéns pelo casamento! 🎉 Que notícia sensacional.", time: "20:10" },
+  { sender: "bot", text: "Vou consultar a agenda agora mesmo... Só um segundinho.", time: "20:11" },
+  { sender: "bot", text: "Opa, no dia 13/10 ainda temos vaga! O evento seria aqui na região mesmo?", time: "20:12" },
+  { sender: "user", text: "Sim, no interior (Luiz Alves).", time: "20:15" },
+  { sender: "bot", text: "Entendido! Luiz Alves é pertinho, conseguimos atender tranquilamente.", time: "20:16" },
+  { sender: "bot", text: "Para te ajudar no planejamento, já gerei um pré-orçamento detalhado para você. Segue o link: zettas.ia.br/orcamento", time: "20:17" }
+]
   }
 ];
 
 export default function Niches() {
   const [activeId, setActiveId] = useState(niches[0]?.id ?? "saude");
+  const [visibleMessages, setVisibleMessages] = useState<number>(1);
+  const [isTyping, setIsTyping] = useState<boolean>(false);
+  const chatContainerRef = useRef<HTMLDivElement>(null);
+
   const activeNiche = useMemo(
     () => niches.find((niche) => niche.id === activeId) ?? niches[0],
     [activeId]
   );
+
+  // Lógica de digitação em tempo real
+  useEffect(() => {
+    // Resetar quando troca de aba
+    setVisibleMessages(1);
+    setIsTyping(false);
+
+    let currentIndex = 1;
+    const maxMessages = activeNiche.chatMockup.length;
+    
+    const showNextMessage = () => {
+      if (currentIndex < maxMessages) {
+        const nextMsg = activeNiche.chatMockup[currentIndex];
+        
+        // Se a próxima mensagem for do bot, mostrar "digitando..." antes
+        if (nextMsg.sender === "bot") {
+          setIsTyping(true);
+          setTimeout(() => {
+            setIsTyping(false);
+            setVisibleMessages(prev => prev + 1);
+            currentIndex++;
+            scheduleNext();
+          }, 1500); // 1.5s digitando
+        } else {
+          // Se for do user, aparece mais rápido
+          setTimeout(() => {
+            setVisibleMessages(prev => prev + 1);
+            currentIndex++;
+            scheduleNext();
+          }, 1000);
+        }
+      }
+    };
+
+    const scheduleNext = () => {
+      if (currentIndex < maxMessages) {
+        setTimeout(showNextMessage, 500); // delay pequeno entre mensagens
+      }
+    };
+
+    // Iniciar a sequência
+    const initialTimer = setTimeout(showNextMessage, 1000);
+
+    return () => clearTimeout(initialTimer);
+  }, [activeId, activeNiche]);
+
+  // Auto-scroll para a última mensagem
+  useEffect(() => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
+  }, [visibleMessages, isTyping]);
 
   return (
     <section id="nichos" className="py-16 md:py-24 bg-white scroll-mt-24">
@@ -162,7 +237,7 @@ export default function Niches() {
                       </CardDescription>
 
                       {/* Chat Mockup - WhatsApp Style */}
-                      <div className="mt-8 md:mt-auto bg-[#efeae2] rounded-3xl overflow-hidden shadow-xl border border-gray-200/50 flex flex-col relative w-full max-w-sm mx-auto md:max-w-md h-[400px] md:h-auto md:min-h-[350px]">
+                      <div className="mt-8 md:mt-auto bg-[#efeae2] rounded-3xl overflow-hidden shadow-xl border border-gray-200/50 flex flex-col relative w-full max-w-sm mx-auto md:max-w-md h-[400px] md:h-[450px]">
                         {/* Header WhatsApp */}
                         <div className="bg-[#008069] px-3 md:px-4 py-2.5 md:py-3 flex items-center gap-2 md:gap-3 text-white z-10 shrink-0">
                           <ArrowLeft className="w-5 h-5 opacity-90 hidden sm:block" />
@@ -181,34 +256,67 @@ export default function Niches() {
                         </div>
 
                         {/* Messages Area */}
-                        <div className="p-3 md:p-4 space-y-3 flex-1 overflow-y-auto">
-                          {activeNiche.chatMockup.map((msg, idx) => {
-                            const isUser = msg.sender === "user";
-                            return (
+                        <div 
+                          ref={chatContainerRef}
+                          className="p-3 md:p-4 space-y-3 flex-1 overflow-y-auto scroll-smooth pb-16"
+                        >
+                          <AnimatePresence initial={false}>
+                            {activeNiche.chatMockup.slice(0, visibleMessages).map((msg, idx) => {
+                              const isUser = msg.sender === "user";
+                              return (
+                                <motion.div
+                                  key={`${activeNiche.id}-${idx}`}
+                                  initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                                  transition={{ duration: 0.2 }}
+                                  className={cn("flex", isUser ? "justify-end" : "justify-start")}
+                                >
+                                  <div
+                                    className={cn(
+                                      "max-w-[90%] md:max-w-[85%] px-3 pt-2 pb-1.5 text-[14px] md:text-[15px] shadow-sm relative",
+                                      isUser
+                                        ? "bg-[#d9fdd3] text-gray-800 rounded-lg rounded-tr-none"
+                                        : "bg-white text-gray-800 rounded-lg rounded-tl-none"
+                                    )}
+                                  >
+                                    <div className="leading-snug pr-2">{msg.text}</div>
+                                    <div className="flex items-center justify-end gap-1 mt-0.5">
+                                      <span className="text-[10px] text-gray-500">{msg.time}</span>
+                                      {isUser && <CheckCheck className="w-3 h-3 md:w-4 md:h-4 text-[#53bdeb]" />}
+                                    </div>
+                                  </div>
+                                </motion.div>
+                              );
+                            })}
+                            
+                            {isTyping && (
                               <motion.div
-                                key={`${activeNiche.id}-${idx}`}
+                                key="typing-indicator"
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: idx * 0.15 }}
-                                className={cn("flex", isUser ? "justify-end" : "justify-start")}
+                                exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
+                                className="flex justify-start"
                               >
-                                <div
-                                  className={cn(
-                                    "max-w-[90%] md:max-w-[85%] px-3 pt-2 pb-1.5 text-[14px] md:text-[15px] shadow-sm relative",
-                                    isUser
-                                      ? "bg-[#d9fdd3] text-gray-800 rounded-lg rounded-tr-none"
-                                      : "bg-white text-gray-800 rounded-lg rounded-tl-none"
-                                  )}
-                                >
-                                  <div className="leading-snug pr-2">{msg.text}</div>
-                                  <div className="flex items-center justify-end gap-1 mt-0.5">
-                                    <span className="text-[10px] text-gray-500">14:30</span>
-                                    {isUser && <CheckCheck className="w-3 h-3 md:w-4 md:h-4 text-[#53bdeb]" />}
-                                  </div>
+                                <div className="bg-white text-gray-800 rounded-lg rounded-tl-none px-4 py-3 shadow-sm flex gap-1 items-center">
+                                  <motion.div
+                                    animate={{ y: [0, -4, 0] }}
+                                    transition={{ repeat: Infinity, duration: 0.6, delay: 0 }}
+                                    className="w-1.5 h-1.5 bg-gray-400 rounded-full"
+                                  />
+                                  <motion.div
+                                    animate={{ y: [0, -4, 0] }}
+                                    transition={{ repeat: Infinity, duration: 0.6, delay: 0.2 }}
+                                    className="w-1.5 h-1.5 bg-gray-400 rounded-full"
+                                  />
+                                  <motion.div
+                                    animate={{ y: [0, -4, 0] }}
+                                    transition={{ repeat: Infinity, duration: 0.6, delay: 0.4 }}
+                                    className="w-1.5 h-1.5 bg-gray-400 rounded-full"
+                                  />
                                 </div>
                               </motion.div>
-                            );
-                          })}
+                            )}
+                          </AnimatePresence>
                         </div>
 
                         {/* Input Area WhatsApp */}
