@@ -27,7 +27,7 @@ const niches = [
       { sender: "bot", text: "Oi, Luana! Temos um horário às 14:30. Posso confirmar?", time: "14:30" },
       { sender: "user", text: "Que ótimo, pode sim, por favor.", time: "14:31" },
       { sender: "bot", text: "Confirmado! ✅ Seu agendamento já está no sistema, ta bom? Mais alguma dúvida?", time: "14:31" },
-      { sender: "user", text: "Não, obrigado!", time: "14:32" }
+      { sender: "user", text: "Só isso, obrigada!", time: "14:32" }
     ]
   },
  {
@@ -110,8 +110,8 @@ export default function Niches() {
   const [visibleMessages, setVisibleMessages] = useState<number>(1);
   const [isTyping, setIsTyping] = useState<boolean>(false);
   const chatContainerRef = useRef<HTMLDivElement>(null);
-  const sectionRef = useRef<HTMLElement>(null);
-  const isSectionInView = useInView(sectionRef, { once: true, amount: 0.25 });
+  const chatMockupRef = useRef<HTMLDivElement>(null);
+  const isChatInView = useInView(chatMockupRef, { amount: 0.6, once: false, margin: "0px 0px -20% 0px" });
 
   const activeNiche = useMemo(
     () => niches.find((niche) => niche.id === activeId) ?? niches[0],
@@ -123,9 +123,9 @@ export default function Niches() {
     setIsTyping(false);
   }, [activeId]);
 
-  // Lógica de digitação em tempo real (inicia apenas quando a seção entra em viewport)
+  // Lógica de digitação em tempo real (inicia apenas quando o mockup entra em viewport)
   useEffect(() => {
-    if (!isSectionInView) return;
+    if (!isChatInView) return;
 
     const timeouts: number[] = [];
     let currentIndex = 1;
@@ -165,7 +165,7 @@ export default function Niches() {
       timeouts.forEach((id) => clearTimeout(id));
       setIsTyping(false);
     };
-  }, [activeNiche, isSectionInView]);
+  }, [activeNiche, isChatInView]);
 
   // Auto-scroll para a última mensagem
   useEffect(() => {
@@ -175,7 +175,7 @@ export default function Niches() {
   }, [visibleMessages, isTyping]);
 
   return (
-    <section ref={sectionRef} id="nichos" className="py-16 md:py-24 bg-navy-950 scroll-mt-24">
+    <section id="nichos" className="py-16 md:py-24 bg-navy-950 scroll-mt-24">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
@@ -243,7 +243,7 @@ export default function Niches() {
                       </CardDescription>
 
                       {/* Chat Mockup - WhatsApp Style */}
-                      <div className="mt-8 md:mt-auto bg-[#efeae2] rounded-3xl overflow-hidden shadow-xl border border-gray-200/50 flex flex-col relative w-full max-w-sm mx-auto md:max-w-md h-[400px] md:h-[450px]">
+                      <div ref={chatMockupRef} className="mt-8 md:mt-auto bg-[#efeae2] rounded-3xl overflow-hidden shadow-xl border border-gray-200/50 flex flex-col relative w-full max-w-sm mx-auto md:max-w-md h-[400px] md:h-[450px]">
                         {/* Header WhatsApp */}
                         <div className="bg-[#008069] px-3 md:px-4 py-2.5 md:py-3 flex items-center gap-2 md:gap-3 text-white z-10 shrink-0">
                           <ArrowLeft className="w-5 h-5 opacity-90 hidden sm:block" />
