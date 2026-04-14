@@ -83,7 +83,10 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-full flex flex-col font-sans text-graphite-900 bg-gray-50">{children}</body>
+      <body className="min-h-full flex flex-col font-sans text-foreground bg-background bg-grid-pattern relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-navy-950/80 to-navy-950 -z-10 pointer-events-none"></div>
+        {children}
+      </body>
     </html>
   );
 }

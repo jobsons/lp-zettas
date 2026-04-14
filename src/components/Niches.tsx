@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import { Card, CardTitle, CardDescription } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { Stethoscope, Building2, Dumbbell, Music, CheckCircle2, ArrowLeft, MoreVertical, Phone, Video, Smile, Mic, CheckCheck, Paperclip } from "lucide-react";
@@ -19,9 +19,9 @@ const niches = [
       "Lembretes de medicação e retorno",
       "Gestão de receituários e pedidos de delivery"
     ],
-    image: "bg-emerald-50",
-    color: "text-emerald-600",
-    gradient: "from-emerald-500/20 to-emerald-500/5",
+    image: "bg-navy-950",
+    color: "text-cyan-400",
+    gradient: "from-cyan-500/20 to-violet-500/5",
     chatMockup: [
       { sender: "user", text: "Oi, preciso de um encaixe para hoje, é possível?", time: "14:30" },
       { sender: "bot", text: "Oi, Luana! Temos um horário às 14:30. Posso confirmar?", time: "14:30" },
@@ -41,9 +41,9 @@ const niches = [
       "Envio imediato de tabelas, plantas e materiais de venda",
       "Follow-up ativo de leads vindos de anúncios (Meta/Google)"
     ],
-    image: "bg-blue-50",
-    color: "text-blue-600",
-    gradient: "from-blue-500/20 to-blue-500/5",
+    image: "bg-navy-950",
+    color: "text-cyan-400",
+    gradient: "from-violet-500/20 to-cyan-500/5",
     chatMockup: [
   { sender: "user", text: "Quero saber mais sobre o pré-lançamento.", time: "09:15" },
   { sender: "bot", text: "Com certeza! Vou gerar o material atualizado para você agora mesmo. Só um instante...", time: "09:15" },
@@ -67,9 +67,9 @@ const niches = [
       "Agendamento de aulas experimentais",
       "Dúvidas frequentes sobre planos e horários"
     ],
-    image: "bg-orange-50",
-    color: "text-orange-600",
-    gradient: "from-orange-500/20 to-orange-500/5",
+    image: "bg-navy-950",
+    color: "text-cyan-400",
+    gradient: "from-cyan-500/15 to-violet-500/10",
     chatMockup: [
   { sender: "bot", text: "Opa! Notamos que você ainda não apareceu para treinar essa semana. Tudo certo por aí? 🏃‍♂️", time: "18:00" },
   { sender: "user", text: "Vou hoje à noite, prometo! 💪", time: "18:05" },
@@ -90,9 +90,9 @@ const niches = [
       "Verificação de disponibilidade de agenda",
       "Fechamento de contratos sem intervenção humana"
     ],
-    image: "bg-purple-50",
-    color: "text-purple-600",
-    gradient: "from-purple-500/20 to-purple-500/5",
+    image: "bg-navy-950",
+    color: "text-cyan-400",
+    gradient: "from-violet-500/20 to-cyan-500/10",
     chatMockup: [
   { sender: "user", text: "Oi, vou casar dia 13/10, você tem disponibilidade?", time: "20:10" },
   { sender: "bot", text: "Parabéns pelo casamento! 🎉 Que notícia sensacional.", time: "20:10" },
@@ -110,56 +110,62 @@ export default function Niches() {
   const [visibleMessages, setVisibleMessages] = useState<number>(1);
   const [isTyping, setIsTyping] = useState<boolean>(false);
   const chatContainerRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const isSectionInView = useInView(sectionRef, { once: true, amount: 0.25 });
 
   const activeNiche = useMemo(
     () => niches.find((niche) => niche.id === activeId) ?? niches[0],
     [activeId]
   );
 
-  // Lógica de digitação em tempo real
   useEffect(() => {
-    // Resetar quando troca de aba
     setVisibleMessages(1);
     setIsTyping(false);
+  }, [activeId]);
 
+  // Lógica de digitação em tempo real (inicia apenas quando a seção entra em viewport)
+  useEffect(() => {
+    if (!isSectionInView) return;
+
+    const timeouts: number[] = [];
     let currentIndex = 1;
     const maxMessages = activeNiche.chatMockup.length;
-    
-    const showNextMessage = () => {
-      if (currentIndex < maxMessages) {
-        const nextMsg = activeNiche.chatMockup[currentIndex];
-        
-        // Se a próxima mensagem for do bot, mostrar "digitando..." antes
-        if (nextMsg.sender === "bot") {
-          setIsTyping(true);
-          setTimeout(() => {
-            setIsTyping(false);
-            setVisibleMessages(prev => prev + 1);
-            currentIndex++;
-            scheduleNext();
-          }, 1500); // 1.5s digitando
-        } else {
-          // Se for do user, aparece mais rápido
-          setTimeout(() => {
-            setVisibleMessages(prev => prev + 1);
-            currentIndex++;
-            scheduleNext();
-          }, 1000);
-        }
-      }
+
+    const setT = (fn: () => void, delayMs: number) => {
+      const id = window.setTimeout(fn, delayMs);
+      timeouts.push(id);
     };
 
-    const scheduleNext = () => {
-      if (currentIndex < maxMessages) {
-        setTimeout(showNextMessage, 500); // delay pequeno entre mensagens
+    const next = () => {
+      if (currentIndex >= maxMessages) return;
+
+      const nextMsg = activeNiche.chatMockup[currentIndex];
+
+      if (nextMsg.sender === "bot") {
+        setIsTyping(true);
+        setT(() => {
+          setIsTyping(false);
+          setVisibleMessages((prev) => prev + 1);
+          currentIndex += 1;
+          setT(next, 500);
+        }, 1500);
+        return;
       }
+
+      setT(() => {
+        setVisibleMessages((prev) => prev + 1);
+        currentIndex += 1;
+        setT(next, 500);
+      }, 1000);
     };
 
-    // Iniciar a sequência
-    const initialTimer = setTimeout(showNextMessage, 1000);
+    setT(next, 1000);
 
-    return () => clearTimeout(initialTimer);
-  }, [activeId, activeNiche]);
+    return () => {
+      timeouts.forEach((id) => clearTimeout(id));
+      setIsTyping(false);
+    };
+  }, [activeNiche, isSectionInView]);
 
   // Auto-scroll para a última mensagem
   useEffect(() => {
@@ -169,13 +175,13 @@ export default function Niches() {
   }, [visibleMessages, isTyping]);
 
   return (
-    <section id="nichos" className="py-16 md:py-24 bg-white scroll-mt-24">
+    <section ref={sectionRef} id="nichos" className="py-16 md:py-24 bg-navy-950 scroll-mt-24">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Soluções sob medida para o seu negócio
           </h2>
-          <p className="text-lg text-graphite-800">
+          <p className="text-lg text-graphite-300">
             Esqueça os chatbots engessados que irritam seus clientes. Criamos Agentes de IA únicos, treinados especificamente com as regras, tom de voz e conhecimento da sua empresa. Veja alguns casos de uso abaixo:
           </p>
         </div>
@@ -184,7 +190,7 @@ export default function Niches() {
           <div
             role="tablist"
             aria-label="Nichos"
-            className="grid w-full grid-cols-2 lg:grid-cols-4 h-auto p-1 bg-gray-100/80 rounded-xl mb-8"
+            className="grid w-full grid-cols-2 lg:grid-cols-4 h-auto p-1 bg-navy-900 rounded-xl mb-8 border border-navy-800"
           >
             {niches.map((niche) => {
               const Icon = niche.icon;
@@ -197,8 +203,8 @@ export default function Niches() {
                   aria-selected={isActive}
                   onClick={() => setActiveId(niche.id)}
                   className={cn(
-                    "flex flex-col md:flex-row items-center justify-center gap-2 py-3 px-4 rounded-lg transition-all text-foreground/70 hover:text-foreground",
-                    isActive && "bg-white text-emerald-600 shadow-sm"
+                    "flex flex-col md:flex-row items-center justify-center gap-2 py-3 px-4 rounded-lg transition-all text-graphite-400 hover:text-white",
+                    isActive && "bg-navy-800 text-cyan-400 shadow-sm border border-cyan-500/30"
                   )}
                 >
                   <Icon className="w-5 h-5" />
@@ -217,22 +223,22 @@ export default function Niches() {
               role="tabpanel"
               className="w-full"
             >
-              <Card className="w-full border-0 shadow-xl shadow-gray-200/50 overflow-hidden rounded-2xl bg-white">
+              <Card className="w-full border-0 shadow-2xl shadow-navy-900/50 overflow-hidden rounded-2xl bg-navy-900 border border-navy-800">
                 <div className="grid md:grid-cols-2 gap-0 min-h-[520px]">
-                  <div className={`p-8 md:p-12 ${activeNiche.image} relative overflow-hidden group`}>
+                  <div className={`p-8 md:p-12 bg-navy-950 relative overflow-hidden group`}>
                     <div
-                      className={`absolute inset-0 bg-gradient-to-br ${activeNiche.gradient} opacity-50 group-hover:opacity-100 transition-opacity duration-500`}
+                      className={`absolute inset-0 bg-gradient-to-br ${activeNiche.gradient} opacity-20 group-hover:opacity-30 transition-opacity duration-500`}
                     />
 
                     <div className="relative z-10 h-full flex flex-col">
                       <div className="flex items-center gap-4 mb-8">
-                        <div className={`p-4 bg-white rounded-2xl shadow-sm ${activeNiche.color}`}>
+                        <div className={`p-4 bg-navy-800 rounded-2xl shadow-sm border border-cyan-500/30 text-cyan-400`}>
                           <activeNiche.icon className="w-8 h-8" />
                         </div>
-                        <CardTitle className="text-3xl font-bold text-navy-900">{activeNiche.title}</CardTitle>
+                        <CardTitle className="text-3xl font-bold text-white">{activeNiche.title}</CardTitle>
                       </div>
 
-                      <CardDescription className="text-lg text-graphite-800 font-medium mb-8">
+                      <CardDescription className="text-lg text-graphite-300 font-medium mb-8">
                         {activeNiche.description}
                       </CardDescription>
 
@@ -334,13 +340,14 @@ export default function Niches() {
                     </div>
                   </div>
 
-                  <div className="p-8 md:p-12 bg-white flex flex-col justify-center">
-                    <h3 className="text-xl font-semibold text-navy-900 mb-6">Como automatizamos:</h3>
-                    <ul className="space-y-4">
+                  <div className="p-8 md:p-12 bg-navy-900 flex flex-col justify-center border-t md:border-t-0 md:border-l border-navy-800 relative overflow-hidden">
+                    <div className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-violet-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                    <h3 className="text-xl font-semibold text-white mb-6 relative z-10">Como automatizamos:</h3>
+                    <ul className="space-y-4 relative z-10">
                       {activeNiche.benefits.map((benefit, index) => (
                         <li key={index} className="flex items-start gap-3">
-                          <CheckCircle2 className="w-6 h-6 text-emerald-500 shrink-0" />
-                          <span className="text-graphite-800">{benefit}</span>
+                          <CheckCircle2 className="w-6 h-6 text-cyan-400 shrink-0" />
+                          <span className="text-graphite-200">{benefit}</span>
                         </li>
                       ))}
                     </ul>
@@ -348,12 +355,13 @@ export default function Niches() {
                 </div>
               </Card>
               <div className="mt-6">
-                <div className="text-center mx-auto max-w-4xl bg-emerald-50 border border-emerald-200 text-emerald-900 rounded-xl p-4 md:p-5 font-semibold">
-                  <div>Seu setor não está na lista? A Zettas desenvolve arquiteturas exclusivas para qualquer mercado.</div>
-                  <div className="mt-3 flex items-center justify-center">
+                <div className="text-center mx-auto max-w-4xl bg-navy-800/80 backdrop-blur-sm border border-violet-500/30 text-graphite-200 rounded-xl p-4 md:p-5 font-medium shadow-[0_0_15px_rgba(139,92,246,0.1)] relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-violet-500/10 pointer-events-none"></div>
+                  <div className="relative z-10">Seu setor não está na lista? A Zettas desenvolve arquiteturas exclusivas para qualquer mercado.</div>
+                  <div className="mt-3 flex items-center justify-center relative z-10">
                     <Link
                       href="#captura"
-                      className="inline-flex items-center justify-center rounded-lg border border-emerald-300 bg-white px-3 py-1.5 text-sm font-semibold text-emerald-900 hover:bg-emerald-100 transition-colors"
+                      className="inline-flex items-center justify-center rounded-lg gradient-brand hover:opacity-90 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-cyan-500/25 transition-all"
                     >
                       Falar com um Especialista
                     </Link>

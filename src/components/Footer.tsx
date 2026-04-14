@@ -21,45 +21,48 @@ function TwitterIcon(props: React.SVGProps<SVGSVGElement>) {
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-50 border-t border-gray-200 pt-16 pb-8">
-      <div className="container mx-auto px-4">
+    <footer className="bg-navy-950 border-t border-navy-800 pt-16 pb-8 relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-cyan-500/5 via-navy-950 to-navy-950 pointer-events-none"></div>
+      <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 mb-12">
           <div className="flex flex-col items-center md:items-start">
-            <Link href="/" className="flex items-center gap-2 mb-4">
-              <Image 
-                src="/logosemfundo.png" 
-                alt="Zettas" 
-                width={480} 
-                height={180} 
-                className="h-32 md:h-40 w-auto object-contain"
-              />
+            <Link href="/" className="inline-flex items-center justify-center mb-4 rounded-xl bg-white/95 border border-white/20 p-0 shadow-[0_0_18px_rgba(255,255,255,0.08)] transition-all">
+              <div className="relative w-[90px] h-[90px] overflow-hidden">
+                <Image 
+                  src="/logosemfundo.png" 
+                  alt="Zettas" 
+                  width={480} 
+                  height={180} 
+                  className="absolute left-1/2 top-1/2 h-[138px] w-auto max-w-none -translate-x-1/2 -translate-y-[46%] object-contain"
+                />
+              </div>
             </Link>
-            <p className="text-graphite-800 text-sm max-w-xs text-center md:text-left">
+            <p className="text-graphite-400 text-sm max-w-xs text-center md:text-left">
               Soluções de automação inteligente e escalável para revolucionar o seu atendimento.
             </p>
           </div>
 
           <div className="flex gap-6">
-            <Link href="#" className="text-gray-400 hover:text-emerald-500 transition-colors">
+            <Link href="#" className="text-graphite-500 hover:text-cyan-400 transition-colors">
               <span className="sr-only">Instagram</span>
               <InstagramIcon className="w-6 h-6" />
             </Link>
-            <Link href="#" className="text-gray-400 hover:text-emerald-500 transition-colors">
+            <Link href="#" className="text-graphite-500 hover:text-violet-400 transition-colors">
               <span className="sr-only">LinkedIn</span>
               <LinkedinIcon className="w-6 h-6" />
             </Link>
-            <Link href="#" className="text-gray-400 hover:text-emerald-500 transition-colors">
+            <Link href="#" className="text-graphite-500 hover:text-cyan-400 transition-colors">
               <span className="sr-only">Twitter</span>
               <TwitterIcon className="w-6 h-6" />
             </Link>
           </div>
         </div>
 
-        <div className="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
+        <div className="border-t border-navy-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-graphite-500">
           <p>© {new Date().getFullYear()} Zettas. Todos os direitos reservados.</p>
           <div className="flex gap-6">
-            <Link href="#" className="hover:text-navy-900 transition-colors">Termos de Uso</Link>
-            <Link href="#" className="hover:text-navy-900 transition-colors">Políticas de Privacidade</Link>
+            <Link href="#" className="hover:text-white transition-colors">Termos de Uso</Link>
+            <Link href="#" className="hover:text-white transition-colors">Políticas de Privacidade</Link>
           </div>
         </div>
       </div>
