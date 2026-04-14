@@ -66,37 +66,43 @@ export default function Hero() {
           className="mt-10"
         >
           <div className="mx-auto max-w-4xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 bg-navy-900/50 backdrop-blur rounded-xl p-4 border border-navy-800 shadow-sm text-sm font-medium text-graphite-200">
-            <div className="flex items-center gap-2">
-              <Zap className="w-5 h-5 text-cyan-400" />
-              <span>Respostas Imediatas</span>
+            <div className="flex items-center gap-2 lg:flex-col lg:items-center lg:justify-center lg:gap-1 rounded-lg px-3 py-2 bg-navy-950/30 border border-navy-800/70 hover:border-cyan-500/30 transition-colors min-h-[44px]">
+              <Zap className="w-5 h-5 text-cyan-400 shrink-0" />
+              <span className="leading-tight lg:text-center">Respostas Imediatas</span>
             </div>
-            <div className="flex items-center gap-2">
-              <TrendingUp className="w-5 h-5 text-cyan-400" />
-              <span>Mais conversão</span>
+            <div className="flex items-center gap-2 lg:flex-col lg:items-center lg:justify-center lg:gap-1 rounded-lg px-3 py-2 bg-navy-950/30 border border-navy-800/70 hover:border-cyan-500/30 transition-colors min-h-[44px]">
+              <TrendingUp className="w-5 h-5 text-cyan-400 shrink-0" />
+              <span className="leading-tight lg:text-center">Mais conversão</span>
             </div>
-            <div className="flex items-center gap-2">
-              <Bot className="w-5 h-5 text-cyan-400" />
-              <span>Qualificação automática de leads</span>
+            <div className="flex items-center gap-2 lg:flex-col lg:items-center lg:justify-center lg:gap-1 rounded-lg px-3 py-2 bg-navy-950/30 border border-navy-800/70 hover:border-cyan-500/30 transition-colors min-h-[44px]">
+              <Bot className="w-5 h-5 text-cyan-400 shrink-0" />
+              <span className="leading-tight lg:text-center">
+                <span className="lg:block">Qualificação automática</span>
+                <span className="lg:block">de leads</span>
+              </span>
             </div>
-            <div className="flex items-center gap-2">
-              <Calendar className="w-5 h-5 text-cyan-400" />
-              <span>Integração com seu CRM/agenda</span>
+            <div className="flex items-center gap-2 lg:flex-col lg:items-center lg:justify-center lg:gap-1 rounded-lg px-3 py-2 bg-navy-950/30 border border-navy-800/70 hover:border-cyan-500/30 transition-colors min-h-[44px]">
+              <Calendar className="w-5 h-5 text-cyan-400 shrink-0" />
+              <span className="leading-tight lg:text-center">
+                <span className="lg:block">Integração com seu</span>
+                <span className="lg:block">CRM/agenda</span>
+              </span>
             </div>
-            <div className="flex items-center gap-2">
-              <Rocket className="w-5 h-5 text-cyan-400" />
-              <span>Implementação rápida</span>
+            <div className="flex items-center gap-2 lg:flex-col lg:items-center lg:justify-center lg:gap-1 rounded-lg px-3 py-2 bg-navy-950/30 border border-navy-800/70 hover:border-cyan-500/30 transition-colors min-h-[44px]">
+              <Rocket className="w-5 h-5 text-cyan-400 shrink-0" />
+              <span className="leading-tight lg:text-center">Implementação rápida</span>
             </div>
-            <div className="flex items-center gap-2">
-              <Headset className="w-5 h-5 text-cyan-400" />
-              <span>Suporte dedicado</span>
+            <div className="flex items-center gap-2 lg:flex-col lg:items-center lg:justify-center lg:gap-1 rounded-lg px-3 py-2 bg-navy-950/30 border border-navy-800/70 hover:border-cyan-500/30 transition-colors min-h-[44px]">
+              <Headset className="w-5 h-5 text-cyan-400 shrink-0" />
+              <span className="leading-tight lg:text-center">Suporte dedicado</span>
             </div>
-            <div className="flex items-center gap-2">
-              <Award className="w-5 h-5 text-cyan-400" />
-              <span>Resultados no primeiro mês</span>
+            <div className="flex items-center gap-2 lg:flex-col lg:items-center lg:justify-center lg:gap-1 rounded-lg px-3 py-2 bg-navy-950/30 border border-navy-800/70 hover:border-cyan-500/30 transition-colors min-h-[44px]">
+              <Award className="w-5 h-5 text-cyan-400 shrink-0" />
+              <span className="leading-tight lg:text-center">Resultados no primeiro mês</span>
             </div>
-            <div className="flex items-center gap-2">
-              <GraduationCap className="w-5 h-5 text-cyan-400" />
-              <span>Treinamento incluso</span>
+            <div className="flex items-center gap-2 lg:flex-col lg:items-center lg:justify-center lg:gap-1 rounded-lg px-3 py-2 bg-navy-950/30 border border-navy-800/70 hover:border-cyan-500/30 transition-colors min-h-[44px]">
+              <GraduationCap className="w-5 h-5 text-cyan-400 shrink-0" />
+              <span className="leading-tight lg:text-center">Treinamento incluso</span>
             </div>
           </div>
         </motion.div>
