@@ -6,13 +6,13 @@ export default function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-navy-800 bg-navy-950/80 backdrop-blur-md overflow-visible">
       <div className="container mx-auto px-4 h-16 sm:h-20 md:h-24 flex items-center justify-between overflow-visible">
         <Link href="/" className="inline-flex shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white/95 border border-white/20 p-0 shadow-[0_0_18px_rgba(255,255,255,0.08)] transition-all">
-          <div className="relative w-[82px] h-[82px] md:w-[90px] md:h-[90px] overflow-hidden">
+          <div className="relative w-[64px] h-[64px] sm:w-[72px] sm:h-[72px] md:w-[90px] md:h-[90px] overflow-hidden">
             <Image 
               src="/logosemfundo.png" 
               alt="Zettas - Automação Inteligente para WhatsApp" 
               width={560} 
               height={210} 
-              className="absolute left-1/2 top-1/2 h-[118px] md:h-[138px] w-auto max-w-none -translate-x-1/2 -translate-y-[46%] object-contain"
+              className="absolute left-1/2 top-1/2 h-[86px] sm:h-[100px] md:h-[138px] w-auto max-w-none -translate-x-1/2 -translate-y-[46%] object-contain"
               priority
             />
           </div>
