@@ -109,6 +109,7 @@ export default function Niches() {
   const [activeId, setActiveId] = useState(niches[0]?.id ?? "saude");
   const [visibleMessages, setVisibleMessages] = useState<number>(1);
   const [isTyping, setIsTyping] = useState<boolean>(false);
+  const [hasChatStarted, setHasChatStarted] = useState<boolean>(false);
   const chatContainerRef = useRef<HTMLDivElement>(null);
   const chatMockupRef = useRef<HTMLDivElement>(null);
   const isChatInView = useInView(chatMockupRef, { amount: 0.6, once: false, margin: "0px 0px -20% 0px" });
@@ -123,9 +124,16 @@ export default function Niches() {
     setIsTyping(false);
   }, [activeId]);
 
+  // Desbloqueia animação para todos os nichos após a primeira vez que o mockup entra em viewport
+  useEffect(() => {
+    if (isChatInView) {
+      setHasChatStarted(true);
+    }
+  }, [isChatInView]);
+
   // Lógica de digitação em tempo real (inicia apenas quando o mockup entra em viewport)
   useEffect(() => {
-    if (!isChatInView) return;
+    if (!hasChatStarted) return;
 
     const timeouts: number[] = [];
     let currentIndex = 1;
@@ -165,7 +173,7 @@ export default function Niches() {
       timeouts.forEach((id) => clearTimeout(id));
       setIsTyping(false);
     };
-  }, [activeNiche, isChatInView]);
+  }, [activeNiche, hasChatStarted]);
 
   // Auto-scroll para a última mensagem
   useEffect(() => {
