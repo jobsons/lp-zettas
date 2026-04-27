@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence, useInView } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardTitle, CardDescription } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { Stethoscope, Building2, Dumbbell, Music, CheckCircle2, ArrowLeft, MoreVertical, Phone, Video, Smile, Mic, CheckCheck, Paperclip } from "lucide-react";
@@ -112,7 +112,6 @@ export default function Niches() {
   const [hasChatStarted, setHasChatStarted] = useState<boolean>(false);
   const chatContainerRef = useRef<HTMLDivElement>(null);
   const chatMockupRef = useRef<HTMLDivElement>(null);
-  const isChatInView = useInView(chatMockupRef, { amount: 0.6, once: false, margin: "0px 0px -20% 0px" });
 
   const activeNiche = useMemo(
     () => niches.find((niche) => niche.id === activeId) ?? niches[0],
@@ -124,12 +123,34 @@ export default function Niches() {
     setIsTyping(false);
   }, [activeId]);
 
-  // Desbloqueia animação para todos os nichos após a primeira vez que o mockup entra em viewport
+  // Desbloqueia animação para todos os nichos após a primeira vez que o mockup entra em viewport.
+  // Reobserva a cada troca de nicho para evitar perder o alvo quando o painel é remontado.
   useEffect(() => {
-    if (isChatInView) {
-      setHasChatStarted(true);
-    }
-  }, [isChatInView]);
+    if (hasChatStarted) return;
+
+    const target = chatMockupRef.current;
+    if (!target) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting && entry.intersectionRatio >= 0.6) {
+          setHasChatStarted(true);
+          observer.disconnect();
+        }
+      },
+      {
+        threshold: [0.6],
+        root: null,
+        rootMargin: "0px 0px -20% 0px"
+      }
+    );
+
+    observer.observe(target);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [activeId, hasChatStarted]);
 
   // Lógica de digitação em tempo real (inicia apenas quando o mockup entra em viewport)
   useEffect(() => {
