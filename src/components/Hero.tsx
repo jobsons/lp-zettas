@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Bot, Zap, TrendingUp, Rocket, Headset, Award, GraduationCap, Calendar } from "lucide-react";
+import { ArrowRight, Bot, Zap, TrendingUp, Calendar } from "lucide-react";
 import Link from "next/link";
 
 export default function Hero() {
@@ -14,17 +14,18 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 font-medium text-sm mb-8"
+          className="mb-8 flex items-center justify-center gap-3 text-xs sm:text-sm uppercase tracking-[0.12em]"
         >
-          <Bot className="w-4 h-4" />
-          <span>O futuro do atendimento chegou!</span>
+          <span className="h-px w-10 bg-gradient-to-r from-transparent to-cyan-400/70" />
+          <span className="font-semibold text-cyan-300">Automação Conversacional</span>
+          <span className="h-px w-10 bg-gradient-to-l from-transparent to-violet-400/70" />
         </motion.div>
 
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white max-w-4xl mx-auto mb-6"
+          className="text-[2.5rem] leading-[1.1] md:text-[3.5rem] md:leading-[1.1] lg:text-[4rem] lg:leading-[1.05] font-bold text-white max-w-4xl mx-auto mb-6"
         >
           Sua operação no <span className="text-transparent bg-clip-text gradient-brand">piloto automático</span> com IA
         </motion.h1>
@@ -33,7 +34,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-lg md:text-xl text-graphite-300 max-w-2xl mx-auto mb-10 leading-relaxed"
+          className="text-[1.0625rem] leading-8 md:text-[1.25rem] md:leading-9 text-graphite-300 max-w-3xl mx-auto mb-10"
         >
           Escale seu atendimento, recupere vendas e qualifique leads 24 horas por dia com soluções profissionais de automação para o seu WhatsApp.
         </motion.p>
@@ -46,14 +47,14 @@ export default function Hero() {
         >
           <Link
             href="#captura"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 text-sm font-semibold text-white gradient-brand rounded-xl hover:opacity-90 transition-all shadow-lg shadow-cyan-500/25"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 text-sm sm:text-base font-semibold text-white gradient-brand rounded-xl hover:opacity-90 transition-all shadow-lg shadow-cyan-900/30"
           >
             Solicitar Diagnóstico Gratuito
             <ArrowRight className="w-4 h-4" />
           </Link>
           <Link
             href="#nichos"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 text-sm font-semibold text-white bg-navy-800/50 hover:bg-navy-800 border border-navy-700 rounded-xl transition-all"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 text-sm sm:text-base font-semibold text-white bg-navy-800/50 hover:bg-navy-800 border border-navy-700 rounded-xl transition-all"
           >
             Ver casos de uso
           </Link>
@@ -65,7 +66,7 @@ export default function Hero() {
           transition={{ duration: 0.5, delay: 0.6 }}
           className="mt-10"
         >
-          <div className="mx-auto max-w-4xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 bg-navy-900/50 backdrop-blur rounded-xl p-4 border border-navy-800 shadow-sm text-sm font-medium text-graphite-200">
+          <div className="mx-auto max-w-4xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 bg-navy-900/50 backdrop-blur rounded-xl p-4 border border-navy-800 shadow-sm text-sm sm:text-base font-medium text-graphite-200">
             <div className="flex items-center gap-2 lg:flex-col lg:items-center lg:justify-center lg:gap-1 rounded-lg px-3 py-2 bg-navy-950/30 border border-navy-800/70 hover:border-cyan-500/30 transition-colors min-h-[44px]">
               <Zap className="w-5 h-5 text-cyan-400 shrink-0" />
               <span className="leading-tight lg:text-center">Respostas Imediatas</span>
@@ -84,25 +85,9 @@ export default function Hero() {
             <div className="flex items-center gap-2 lg:flex-col lg:items-center lg:justify-center lg:gap-1 rounded-lg px-3 py-2 bg-navy-950/30 border border-navy-800/70 hover:border-cyan-500/30 transition-colors min-h-[44px]">
               <Calendar className="w-5 h-5 text-cyan-400 shrink-0" />
               <span className="leading-tight lg:text-center">
-                <span className="lg:block">Integração com seu</span>
+                <span className="lg:block">Integração com seu </span>
                 <span className="lg:block">CRM/agenda</span>
               </span>
-            </div>
-            <div className="flex items-center gap-2 lg:flex-col lg:items-center lg:justify-center lg:gap-1 rounded-lg px-3 py-2 bg-navy-950/30 border border-navy-800/70 hover:border-cyan-500/30 transition-colors min-h-[44px]">
-              <Rocket className="w-5 h-5 text-cyan-400 shrink-0" />
-              <span className="leading-tight lg:text-center">Implementação rápida</span>
-            </div>
-            <div className="flex items-center gap-2 lg:flex-col lg:items-center lg:justify-center lg:gap-1 rounded-lg px-3 py-2 bg-navy-950/30 border border-navy-800/70 hover:border-cyan-500/30 transition-colors min-h-[44px]">
-              <Headset className="w-5 h-5 text-cyan-400 shrink-0" />
-              <span className="leading-tight lg:text-center">Suporte dedicado</span>
-            </div>
-            <div className="flex items-center gap-2 lg:flex-col lg:items-center lg:justify-center lg:gap-1 rounded-lg px-3 py-2 bg-navy-950/30 border border-navy-800/70 hover:border-cyan-500/30 transition-colors min-h-[44px]">
-              <Award className="w-5 h-5 text-cyan-400 shrink-0" />
-              <span className="leading-tight lg:text-center">Resultados no primeiro mês</span>
-            </div>
-            <div className="flex items-center gap-2 lg:flex-col lg:items-center lg:justify-center lg:gap-1 rounded-lg px-3 py-2 bg-navy-950/30 border border-navy-800/70 hover:border-cyan-500/30 transition-colors min-h-[44px]">
-              <GraduationCap className="w-5 h-5 text-cyan-400 shrink-0" />
-              <span className="leading-tight lg:text-center">Treinamento incluso</span>
             </div>
           </div>
         </motion.div>

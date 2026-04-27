@@ -25,7 +25,7 @@ export default function Header() {
         <div>
           <Link
             href="#captura"
-            className="inline-flex items-center justify-center rounded-full gradient-brand hover:opacity-90 text-white font-semibold h-9 sm:h-10 px-3 sm:px-4 text-xs sm:text-sm whitespace-nowrap transition-all shadow-lg shadow-cyan-500/25"
+            className="inline-flex items-center justify-center rounded-xl gradient-brand hover:opacity-90 text-white font-semibold h-9 sm:h-10 px-3 sm:px-4 text-sm whitespace-nowrap transition-all shadow-lg shadow-cyan-900/30"
           >
             <span className="md:hidden">Falar com Especialista</span>
             <span className="hidden md:inline">Solicitar Diagnóstico Gratuito</span>

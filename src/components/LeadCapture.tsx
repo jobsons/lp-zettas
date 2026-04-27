@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Bot } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export default function LeadCapture() {
   return (
@@ -12,16 +12,9 @@ export default function LeadCapture() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="max-w-4xl mx-auto bg-navy-900/80 backdrop-blur-md rounded-3xl p-6 sm:p-8 md:p-16 text-center text-white shadow-[0_0_50px_rgba(6,182,212,0.15)] relative overflow-hidden border border-cyan-500/20"
+          className="max-w-4xl mx-auto bg-navy-900/80 backdrop-blur-md rounded-2xl p-6 sm:p-8 md:p-16 text-center text-white shadow-lg relative overflow-hidden border border-navy-700"
         >
-          <div className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-cyan-500/20 rounded-full blur-3xl pointer-events-none"></div>
-          <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-64 h-64 bg-violet-500/20 rounded-full blur-3xl pointer-events-none"></div>
-
           <div className="relative z-10">
-            <div className="w-16 h-16 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-8 border border-cyan-500/20 shadow-[0_0_20px_rgba(6,182,212,0.12)]">
-              <Bot className="w-8 h-8 text-cyan-400" />
-            </div>
-            
             <h2 className="text-3xl md:text-5xl font-bold mb-6 relative z-10">
               Pronto para transformar seu atendimento?
             </h2>
@@ -34,7 +27,7 @@ export default function LeadCapture() {
                 href="https://zettas.yayforms.link/lm8yBmR"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 text-sm font-semibold text-white gradient-brand rounded-xl hover:opacity-90 transition-all shadow-lg shadow-cyan-500/25"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 text-sm sm:text-base font-semibold text-white gradient-brand rounded-xl hover:opacity-90 transition-all shadow-lg shadow-cyan-900/30"
               >
                 Falar com Especialista
                 <ArrowRight className="w-4 h-4" />

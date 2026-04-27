@@ -43,22 +43,22 @@ export default function Footer() {
           </div>
 
           <div className="flex gap-6">
-            <Link href="#" className="text-graphite-500 hover:text-cyan-400 transition-colors">
+            <Link href="#" className="text-graphite-400 hover:text-cyan-400 transition-colors">
               <span className="sr-only">Instagram</span>
               <InstagramIcon className="w-6 h-6" />
             </Link>
-            <Link href="#" className="text-graphite-500 hover:text-violet-400 transition-colors">
+            <Link href="#" className="text-graphite-400 hover:text-violet-400 transition-colors">
               <span className="sr-only">LinkedIn</span>
               <LinkedinIcon className="w-6 h-6" />
             </Link>
-            <Link href="#" className="text-graphite-500 hover:text-cyan-400 transition-colors">
+            <Link href="#" className="text-graphite-400 hover:text-cyan-400 transition-colors">
               <span className="sr-only">Twitter</span>
               <TwitterIcon className="w-6 h-6" />
             </Link>
           </div>
         </div>
 
-        <div className="border-t border-navy-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-graphite-500">
+        <div className="border-t border-navy-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-graphite-400">
           <p>© {new Date().getFullYear()} Zettas. Todos os direitos reservados.</p>
           <div className="flex gap-6">
             <Link href="#" className="hover:text-white transition-colors">Termos de Uso</Link>

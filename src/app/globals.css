@@ -6,8 +6,8 @@
 
 @layer base {
   .theme {
-    --font-heading: var(--font-sans);
-    --font-sans: var(--font-geist-sans)
+    --font-heading: var(--font-manrope);
+    --font-sans: var(--font-inter);
   }
   :root {
     --background: 210 73% 10%; /* navy-950 */
@@ -52,6 +52,13 @@
   html {
     @apply font-sans scroll-smooth;
   }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.02em;
+  }
   
   .bg-grid-pattern {
     background-size: 40px 40px;
@@ -65,6 +72,6 @@
   }
 
   .gradient-brand {
-    background: linear-gradient(135deg, #06b6d4 0%, #8b5cf6 100%);
+    background: linear-gradient(135deg, #0e7490 0%, #6d28d9 100%);
   }
 }
