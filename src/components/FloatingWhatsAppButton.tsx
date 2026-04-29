@@ -2,14 +2,15 @@ import { MessageCircle } from "lucide-react";
 import { buildWhatsAppLink } from "@/lib/whatsapp";
 
 export default function FloatingWhatsAppButton() {
+  const fallbackPhone = "5547999035154";
   const defaultMessage =
     process.env.NEXT_PUBLIC_WHATSAPP_MESSAGE ?? "Olá! Quero falar com um especialista da Zettas.";
   const href =
     buildWhatsAppLink({
       url: process.env.NEXT_PUBLIC_WHATSAPP_URL,
-      phone: process.env.NEXT_PUBLIC_WHATSAPP_PHONE,
+      phone: process.env.NEXT_PUBLIC_WHATSAPP_PHONE ?? fallbackPhone,
       message: defaultMessage,
-    }) ?? `https://api.whatsapp.com/send?text=${encodeURIComponent(defaultMessage)}`;
+    }) ?? `https://wa.me/${fallbackPhone}?text=${encodeURIComponent(defaultMessage)}`;
 
   return (
     <a
