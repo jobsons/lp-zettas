@@ -7,10 +7,12 @@ export function buildWhatsAppLink(args: { phone?: string; message?: string; url?
   if (explicitUrl) return explicitUrl;
 
   const phone = args.phone ? normalizePhoneNumber(args.phone) : "";
-  const base = phone ? `https://wa.me/${phone}` : "https://wa.me/";
+  if (!phone) return null;
+
+  const base = "https://api.whatsapp.com/send";
 
   const message = args.message?.trim();
-  if (!message) return base;
+  if (!message) return `${base}?phone=${phone}`;
 
-  return `${base}?text=${encodeURIComponent(message)}`;
+  return `${base}?phone=${phone}&text=${encodeURIComponent(message)}`;
 }
