@@ -72,6 +72,11 @@ export default function RootLayout({
           src={`https://www.googletagmanager.com/gtag/js?id=G-L09PJCGK2X`}
         />
         <Script
+          strategy="afterInteractive"
+          src="https://tally.so/widgets/embed.js"
+          async
+        />
+        <Script
           id="gtag-init"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{

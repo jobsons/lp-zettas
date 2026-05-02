@@ -4,6 +4,9 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
 export default function LeadCapture() {
+  const tallyHash =
+    "#tally-open=XxOGxe&tally-emoji-text=%F0%9F%91%8B&tally-emoji-animation=wave";
+
   return (
     <section id="captura" className="py-16 md:py-24 bg-transparent relative overflow-hidden scroll-mt-24">
       <div className="container mx-auto px-4 relative z-10">
@@ -23,15 +26,48 @@ export default function LeadCapture() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10">
-              <a
-                href="https://zettas.yayforms.link/lm8yBmR"
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                type="button"
+                data-tally-open="XxOGxe"
+                data-tally-emoji-text="👋"
+                data-tally-emoji-animation="wave"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 text-sm sm:text-base font-semibold text-white gradient-brand rounded-xl hover:opacity-90 transition-all shadow-lg shadow-cyan-900/30"
+                onClick={() => {
+                  if (typeof window === "undefined") return;
+
+                  const applyHash = () => {
+                    if (window.location.hash === tallyHash) {
+                      window.location.hash = "";
+                      window.setTimeout(() => {
+                        window.location.hash = tallyHash;
+                      }, 0);
+                      return;
+                    }
+
+                    window.location.hash = tallyHash;
+                  };
+
+                  const fireHashChange = () => {
+                    try {
+                      const evt =
+                        typeof window.HashChangeEvent === "function"
+                          ? new HashChangeEvent("hashchange")
+                          : (() => {
+                              const e = document.createEvent("Event");
+                              e.initEvent("hashchange", true, true);
+                              return e;
+                            })();
+                      window.dispatchEvent(evt);
+                    } catch {}
+                  };
+
+                  applyHash();
+                  fireHashChange();
+                }}
               >
                 Falar com Especialista
                 <ArrowRight className="w-4 h-4" />
-              </a>
+              </button>
             </div>
           </div>
         </motion.div>
