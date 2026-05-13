@@ -43,10 +43,15 @@ export default function Footer() {
           </div>
 
           <div className="flex gap-6">
-            <Link href="#" className="text-graphite-400 hover:text-cyan-400 transition-colors">
+            <a
+              href="https://www.instagram.com/zettas.ia/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-graphite-400 hover:text-cyan-400 transition-colors"
+            >
               <span className="sr-only">Instagram</span>
               <InstagramIcon className="w-6 h-6" />
-            </Link>
+            </a>
             <Link href="#" className="text-graphite-400 hover:text-violet-400 transition-colors">
               <span className="sr-only">LinkedIn</span>
               <LinkedinIcon className="w-6 h-6" />
