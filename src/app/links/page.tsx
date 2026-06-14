@@ -75,24 +75,26 @@ export default function LinksBioPage() {
           transition={{ duration: 0.6 }}
           className="flex flex-col items-center text-center mb-10"
         >
-          <div className="relative w-20 h-20 sm:w-24 sm:h-24 overflow-hidden rounded-2xl bg-white border border-white/20 shadow-[0_0_24px_rgba(255,255,255,0.15)] flex items-center justify-center p-1 mb-4 group transition-all duration-300 hover:scale-105">
-            <div className="relative w-full h-full overflow-hidden rounded-xl bg-white flex items-center justify-center">
-              <Image
-                src="/logosemfundo.png"
-                alt="Zettas Logo"
-                width={120}
-                height={45}
-                className="w-full h-auto object-contain scale-[1.3] translate-y-[-2%]"
-                priority
-              />
-            </div>
+          {/* Badge de Verificação Oficial */}
+          <span className="inline-flex items-center justify-center bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider mb-3">
+            Links Oficiais
+          </span>
+
+          {/* Logo Oficial Direta */}
+          <div className="relative w-48 mb-6 group transition-all duration-300 hover:scale-105 flex items-center justify-center">
+            {/* Glow de fundo sutil para contraste */}
+            <div className="absolute w-36 h-36 bg-white/10 blur-2xl rounded-full opacity-70 pointer-events-none" />
+            
+            <Image
+              src="/Zettas_logo.png"
+              alt="Zettas Logo"
+              width={192}
+              height={192}
+              className="relative z-10 w-full h-auto object-contain"
+              priority
+            />
           </div>
-          <h1 className="text-2xl font-bold text-white tracking-tight flex items-center gap-1.5 justify-center">
-            Zettas IA
-            <span className="inline-flex items-center justify-center bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-[10px] font-bold px-1.5 py-0.5 rounded-full uppercase tracking-wider">
-              Oficial
-            </span>
-          </h1>
+
           <p className="text-sm text-graphite-300 mt-2 max-w-[320px]">
             Agentes de Inteligência Artificial para WhatsApp. Escalamos suas vendas e seu atendimento 24/7.
           </p>
