@@ -44,7 +44,7 @@ const SEGMENTOS = [
 export default function LinksBioPage() {
   // Configurações do WhatsApp
   const phone = process.env.NEXT_PUBLIC_WHATSAPP_PHONE ?? "5547999035154";
-  const defaultWhatsAppMsg = "Olá! Vim pelo link da bio do Instagram e gostaria de falar com um especialista.";
+  const defaultWhatsAppMsg = "Olá! Vim pelo link da bio do Instagram e gostaria de mais detalhes.";
   const linkWhatsAppDireto = buildWhatsAppLink({
     phone,
     message: defaultWhatsAppMsg,
@@ -157,14 +157,14 @@ export default function LinksBioPage() {
 
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-between py-10 px-4 md:px-6 relative overflow-hidden select-none">
-      
+
       {/* Background neon elements */}
       <div className="absolute top-[-10%] left-[-20%] w-[60%] h-[40%] rounded-full bg-cyan-500/10 blur-[120px] pointer-events-none" />
       <div className="absolute bottom-[-10%] right-[-20%] w-[60%] h-[40%] rounded-full bg-violet-500/10 blur-[120px] pointer-events-none" />
 
       {/* Container Principal */}
       <main className="w-full max-w-md flex flex-col items-center z-10 flex-grow justify-center">
-        
+
         {/* Header com Logo */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -174,10 +174,10 @@ export default function LinksBioPage() {
         >
           <div className="relative w-20 h-20 sm:w-24 sm:h-24 overflow-hidden rounded-2xl bg-white border border-white/20 shadow-[0_0_24px_rgba(255,255,255,0.15)] flex items-center justify-center p-1 mb-4 group transition-all duration-300 hover:scale-105">
             <div className="relative w-full h-full overflow-hidden rounded-xl bg-white flex items-center justify-center">
-              <Image 
-                src="/logosemfundo.png" 
-                alt="Zettas Logo" 
-                width={120} 
+              <Image
+                src="/logosemfundo.png"
+                alt="Zettas Logo"
+                width={120}
                 height={45}
                 className="w-full h-auto object-contain scale-[1.3] translate-y-[-2%]"
                 priority
@@ -197,7 +197,7 @@ export default function LinksBioPage() {
 
         {/* Links & Formulário */}
         <div className="w-full flex flex-col gap-4">
-          
+
           {/* Botão Primário: WhatsApp Direto */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -212,11 +212,11 @@ export default function LinksBioPage() {
             >
               {/* Efeito Glow Pulsante */}
               <span className="absolute inset-0 w-full h-full bg-white/10 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-out" />
-              
+
               <div className="flex-shrink-0 bg-white/20 p-2.5 rounded-xl">
                 <MessageCircle className="w-6 h-6 animate-pulse" />
               </div>
-              
+
               <div className="flex-grow text-left">
                 <span className="block text-xs font-semibold uppercase tracking-wider text-emerald-100 opacity-90">
                   Contato Imediato
@@ -225,7 +225,7 @@ export default function LinksBioPage() {
                   Falar no WhatsApp agora
                 </span>
               </div>
-              
+
               <ChevronRight className="w-5 h-5 opacity-70 group-hover:translate-x-1 transition-transform" />
             </a>
           </motion.div>
@@ -245,7 +245,7 @@ export default function LinksBioPage() {
                 Diagnóstico Gratuito de IA
               </h2>
             </div>
-            
+
             <p className="text-xs text-graphite-300 mb-5 leading-relaxed">
               Preencha rápido e fale no WhatsApp com nossa equipe já sabendo como acelerar sua operação.
             </p>
@@ -327,11 +327,10 @@ export default function LinksBioPage() {
                             type="button"
                             onClick={() => setSegmento(seg)}
                             disabled={loading}
-                            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
-                              isSelected
+                            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${isSelected
                                 ? "bg-cyan-500 text-navy-950 font-bold shadow-[0_0_12px_rgba(6,182,212,0.3)]"
                                 : "bg-navy-950/60 border border-navy-800 text-graphite-300 hover:border-navy-700 hover:text-white"
-                            }`}
+                              }`}
                           >
                             {seg}
                           </button>
