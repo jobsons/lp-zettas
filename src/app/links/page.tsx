@@ -242,7 +242,7 @@ export default function LinksBioPage() {
                 <Sparkles className="w-4 h-4" />
               </div>
               <h2 className="text-base font-bold text-white">
-                Diagnóstico Gratuito de IA
+                Diagnóstico Gratuito
               </h2>
             </div>
 
