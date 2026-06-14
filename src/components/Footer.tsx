@@ -26,16 +26,17 @@ export default function Footer() {
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 mb-12">
           <div className="flex flex-col items-center md:items-start">
-            <Link href="/" className="inline-flex items-center justify-center mb-4 rounded-xl bg-white/95 border border-white/20 p-0 shadow-[0_0_18px_rgba(255,255,255,0.08)] transition-all">
-              <div className="relative w-[90px] h-[90px] overflow-hidden">
-                <Image 
-                  src="/logosemfundo.png" 
-                  alt="Zettas" 
-                  width={480} 
-                  height={180} 
-                  className="absolute left-1/2 top-1/2 h-[138px] w-auto max-w-none -translate-x-1/2 -translate-y-[46%] object-contain"
-                />
-              </div>
+            <Link href="/" className="inline-flex items-center justify-center mb-4 transition-all hover:opacity-90 relative">
+              {/* Glow de fundo sutil para contraste */}
+              <div className="absolute w-20 h-20 bg-white/10 blur-xl rounded-full opacity-60 pointer-events-none" />
+              
+              <Image 
+                src="/Zettas_logo.png" 
+                alt="Zettas" 
+                width={96} 
+                height={96} 
+                className="relative z-10 w-24 h-auto object-contain"
+              />
             </Link>
             <p className="text-graphite-400 text-sm max-w-xs text-center md:text-left">
               Soluções de automação inteligente e escalável para revolucionar o seu atendimento.
