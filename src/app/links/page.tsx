@@ -247,7 +247,7 @@ export default function LinksBioPage() {
             </div>
 
             <p className="text-xs text-graphite-300 mb-5 leading-relaxed">
-              Preencha rápido e fale no WhatsApp com nossa equipe já sabendo como acelerar sua operação.
+              Preencha o formulário abaixo e nossa equipe entrará em contato com você.
             </p>
 
             <AnimatePresence mode="wait">
@@ -328,8 +328,8 @@ export default function LinksBioPage() {
                             onClick={() => setSegmento(seg)}
                             disabled={loading}
                             className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${isSelected
-                                ? "bg-cyan-500 text-navy-950 font-bold shadow-[0_0_12px_rgba(6,182,212,0.3)]"
-                                : "bg-navy-950/60 border border-navy-800 text-graphite-300 hover:border-navy-700 hover:text-white"
+                              ? "bg-cyan-500 text-navy-950 font-bold shadow-[0_0_12px_rgba(6,182,212,0.3)]"
+                              : "bg-navy-950/60 border border-navy-800 text-graphite-300 hover:border-navy-700 hover:text-white"
                               }`}
                           >
                             {seg}
