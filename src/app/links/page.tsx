@@ -73,7 +73,7 @@ export default function LinksBioPage() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="flex flex-col items-center text-center mb-10"
+          className="flex flex-col items-center text-center mb-6"
         >
           {/* Badge de Verificação Oficial */}
           <span className="inline-flex items-center justify-center bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider mb-3">
@@ -81,15 +81,15 @@ export default function LinksBioPage() {
           </span>
 
           {/* Logo Oficial Direta */}
-          <div className="relative w-48 mb-6 group transition-all duration-300 hover:scale-105 flex items-center justify-center">
+          <div className="relative w-32 mb-4 group transition-all duration-300 hover:scale-105 flex items-center justify-center">
             {/* Glow de fundo sutil para contraste */}
-            <div className="absolute w-36 h-36 bg-white/10 blur-2xl rounded-full opacity-70 pointer-events-none" />
+            <div className="absolute w-24 h-24 bg-white/10 blur-2xl rounded-full opacity-60 pointer-events-none" />
             
             <Image
               src="/Zettas_logo.png"
               alt="Zettas Logo"
-              width={192}
-              height={192}
+              width={128}
+              height={128}
               className="relative z-10 w-full h-auto object-contain"
               priority
             />
