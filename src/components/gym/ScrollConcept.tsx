@@ -119,7 +119,7 @@ export default function ScrollConcept() {
   return <div className="zc-concept" ref={ref}>
     <motion.div className="zc-ambient" aria-hidden="true" style={{ backgroundPositionY: still ? "50%" : light }} />
     <a className="zc-skip" href="#atendimento">Ir para a demonstração</a>
-    <header className="zc-header"><a href="#inicio" aria-label="Zettas, início" className="zc-brand"><Image src="/Zettas_logo.PNG" width={56} height={50} alt="" priority /></a><nav aria-label="Navegação principal"><a href="#atendimento">Na prática</a><a href="#personalizacao">Sua academia</a><a href="#implantacao">Implantação</a></nav><ContactLink placement="conceito_header" className="zc-button zc-header-cta" /></header>
+    <header className="zc-header"><a href="#inicio" aria-label="Zettas, início" className="zc-brand"><Image src="/Zettas_logo.png" width={56} height={50} alt="" priority /></a><nav aria-label="Navegação principal"><a href="#atendimento">Na prática</a><a href="#personalizacao">Sua academia</a><a href="#implantacao">Implantação</a></nav><ContactLink placement="conceito_header" className="zc-button zc-header-cta" /></header>
     <main>
       <section className="zc-hero" id="inicio">
         <div className="zc-hero-copy">

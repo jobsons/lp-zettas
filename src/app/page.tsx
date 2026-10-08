@@ -46,7 +46,7 @@ export default function Home() {
         "@id": "https://zettas.ia.br/#organization",
         name: "Zettas",
         url: "https://zettas.ia.br/",
-        logo: "https://zettas.ia.br/Zettas_logo.PNG",
+        logo: "https://zettas.ia.br/Zettas_logo.png",
         sameAs: ["https://www.instagram.com/zettas.ia/"],
         contactPoint: { "@type": "ContactPoint", telephone: "+55-47-99903-5154", contactType: "sales", availableLanguage: "Portuguese" },
       },
