@@ -1,3 +1,5 @@
+"use client";
+import { usePathname } from "next/navigation";
 import { MessageCircle } from "lucide-react";
 import { buildWhatsAppLink } from "@/lib/whatsapp";
 
@@ -23,16 +25,20 @@ function InstagramIcon(props: React.SVGProps<SVGSVGElement>) {
 }
 
 export default function FloatingWhatsAppButton() {
+  const pathname = usePathname();
   const fallbackPhone = "5547999035154";
   const defaultMessage =
-    process.env.NEXT_PUBLIC_WHATSAPP_MESSAGE ?? "Olá! Quero falar com um especialista da Zettas.";
+    process.env.NEXT_PUBLIC_WHATSAPP_MESSAGE ??
+    "Olá! Quero falar com um especialista da Zettas.";
   const href =
     buildWhatsAppLink({
       url: process.env.NEXT_PUBLIC_WHATSAPP_URL,
       phone: process.env.NEXT_PUBLIC_WHATSAPP_PHONE ?? fallbackPhone,
       message: defaultMessage,
-    }) ?? `https://wa.me/${fallbackPhone}?text=${encodeURIComponent(defaultMessage)}`;
+    }) ??
+    `https://wa.me/${fallbackPhone}?text=${encodeURIComponent(defaultMessage)}`;
 
+  if (pathname === "/" || pathname === "/conceito") return null;
   return (
     <div className="fixed z-[60] bottom-4 right-4 sm:bottom-6 sm:right-6 flex flex-col items-end gap-3">
       <a
