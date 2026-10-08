@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion, useTransform } from "framer-motion";
-import { Check, MessageCircle, Users, ListFilter, CalendarDays, RefreshCw } from "lucide-react";
+import { Check, MessageCircle, Users, ListFilter, CalendarDays, RefreshCw, ChevronLeft, ChevronRight } from "lucide-react";
 import { CalendarDay, Reveal, type IllustrationProps } from "./ConceptMotion";
 import { useIllustrationLoop } from "./useIllustrationLoop";
 
@@ -19,8 +19,8 @@ const monthlyPages = [
   [["Movimento diário", "Distribuição dos registros no mês"], ["Vendas por responsável", "Atribuições registradas no sistema"], ["Comparativos e metas", "Indicadores disponíveis para análise"]],
 ];
 
-function ReportItems({ pages, index, still, progress, visible }: IllustrationProps & {
-  pages: string[][][]; index: number; visible: boolean;
+function ReportItems({ pages, index, still, progress, visible, goTo, label }: IllustrationProps & {
+  pages: string[][][]; index: number; visible: boolean; goTo: (page: number) => void; label: string;
 }) {
   const icons = [Users, RefreshCw, ListFilter];
   return <div className="zc-loop-report-items">
@@ -38,12 +38,16 @@ function ReportItems({ pages, index, still, progress, visible }: IllustrationPro
         })}
       </motion.div>
     </AnimatePresence>
-    <div className="zc-loop-pages" aria-hidden="true">{pages.map((_, i) => <i key={i} className={i === index ? "is-current" : ""} />)}</div>
+    <nav className="zc-loop-pages" aria-label={`Conteúdos do ${label}`}>
+      <button type="button" aria-label={`Conteúdo anterior do ${label}`} onClick={() => goTo(index - 1)}><ChevronLeft size={17} aria-hidden="true" /></button>
+      {pages.map((_, i) => <button type="button" key={i} aria-label={`${label}: conteúdo ${i + 1} de ${pages.length}`} aria-current={i === index ? "true" : undefined} className={i === index ? "is-current" : ""} onClick={() => goTo(i)}><span /></button>)}
+      <button type="button" aria-label={`Próximo conteúdo do ${label}`} onClick={() => goTo(index + 1)}><ChevronRight size={17} aria-hidden="true" /></button>
+    </nav>
   </div>;
 }
 
 export function WeeklyReport({ progress, still }: IllustrationProps) {
-  const loop = useIllustrationLoop(still, weeklyPages.length, 5200, progress);
+  const loop = useIllustrationLoop(still, weeklyPages.length, 5200, progress, .6);
   return (
     <div ref={loop.ref} className="zc-report-art zc-weekly-art">
       <div className="zc-paper-back" />
@@ -66,7 +70,7 @@ export function WeeklyReport({ progress, still }: IllustrationProps) {
           <path d="M45 0 V10 Q45 20 55 20 H145 M255 0 V10 Q255 20 245 20 H155 M150 0 V38" />
           <circle cx="150" cy="32" r="3" />
         </svg>
-        <ReportItems pages={weeklyPages} index={loop.index} visible={loop.visible} progress={progress} still={still} />
+        <ReportItems pages={weeklyPages} index={loop.index} visible={loop.visible} progress={progress} still={still} goTo={loop.goTo} label="relatório semanal" />
       </div>
       <Reveal progress={progress} at={0.72} still={still} className="zc-art-stamp">
         <Check size={22} aria-hidden="true" /><span>Pontos para acompanhar</span>
@@ -81,7 +85,7 @@ function CategoryBar({ progress, still, at, width }: IllustrationProps & { at: n
 }
 
 export function MonthlyReport({ progress, still }: IllustrationProps) {
-  const loop = useIllustrationLoop(still, monthlyPages.length, 5200, progress);
+  const loop = useIllustrationLoop(still, monthlyPages.length, 5200, progress, .6);
   return (
     <div ref={loop.ref} className="zc-report-art zc-monthly-art">
       <div className="zc-paper-back" />
@@ -99,7 +103,7 @@ export function MonthlyReport({ progress, still }: IllustrationProps) {
           <div><span>Serviços</span><CategoryBar progress={progress} still={still} at={0.3} width="48%" /></div>
           <div><span>Produtos</span><CategoryBar progress={progress} still={still} at={0.38} width="28%" /></div>
         </div>
-        <ReportItems pages={monthlyPages} index={loop.index} visible={loop.visible} progress={progress} still={still} />
+        <ReportItems pages={monthlyPages} index={loop.index} visible={loop.visible} progress={progress} still={still} goTo={loop.goTo} label="relatório mensal" />
       </div>
       <Reveal progress={progress} at={0.78} still={still} className="zc-art-stamp zc-two-reports">
         <Check size={22} aria-hidden="true" /><div><strong>Semana + mês</strong><span>Conversas e sistema, organizados</span></div>

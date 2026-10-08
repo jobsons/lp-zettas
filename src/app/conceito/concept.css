@@ -174,10 +174,13 @@
 .zc-category-chart>div:nth-child(4) i{background:#91b9cf}
 .zc-two-reports strong{display:block;font-size:11px}
 .zc-two-reports div>span{display:block;margin-top:3px;font-size:9px;font-weight:400}
-.zc-loop-report-items{position:relative;min-height:232px;padding-bottom:18px}
-.zc-loop-pages{position:absolute;bottom:0;left:0;right:0;display:flex;justify-content:center;gap:6px}
-.zc-loop-pages i{width:5px;height:5px;border-radius:50%;background:#bdceda}
-.zc-loop-pages .is-current{background:#228cce}
+.zc-loop-report-items{position:relative;min-height:276px;padding-bottom:0}
+.zc-loop-pages{display:flex;align-items:center;justify-content:center;gap:0;margin-top:10px}
+.zc-loop-pages button{display:grid;place-items:center;flex-shrink:0;width:40px;min-height:44px;border:0;background:transparent;color:#526f85;cursor:pointer;border-radius:8px;padding:0}
+.zc-loop-pages button>span{width:7px;height:7px;border-radius:50%;background:#9aafbf}
+.zc-loop-pages .is-current>span{background:#228cce}
+.zc-loop-pages button:hover{background:#e2edf5;color:#193c5c}
+.zc-loop-pages button:focus-visible{outline:2px solid #1f79b3;outline-offset:1px}
 .zc-send-cycle{min-height:142px}
 .zc-billing-message .zc-send-cycle p{min-height:56px}
 .zc-send-progress{height:2px;background:#62a93a;border-radius:2px;margin-top:12px;transform-origin:left}
@@ -349,3 +352,15 @@
 .zc-form-link{display:block;width:fit-content;margin-top:18px;padding:7px 0;min-height:36px;color:var(--zc-muted);font-size:13px;text-decoration:underline!important;text-underline-offset:5px;text-decoration-color:#526f85!important}
 .zc-form-link:hover{color:var(--zc-text);text-decoration-color:var(--zc-blue)!important}
 .zc-closing .zc-form-link{margin:18px auto 0}
+
+/* Notes have their own space instead of covering the illustration's copy. */
+.zc-report-art .zc-art-stamp,.zc-profile-art .zc-art-stamp{position:relative;right:auto;bottom:auto;width:fit-content;max-width:100%;margin:26px 0 0 auto}
+@media(max-width:900px){
+ .zc-reception{padding-bottom:12px}
+ .zc-reception-handoff{position:relative;right:auto;bottom:auto;width:fit-content;max-width:100%;margin:28px 0 0 auto}
+ .zc-chat-art{padding-bottom:8px}
+ .zc-context-note{position:relative;right:auto;bottom:auto;width:fit-content;max-width:100%;margin:25px 0 0 auto}
+ .zc-report-item div{min-width:0}
+ .zc-report-item strong,.zc-report-item div>span{overflow-wrap:anywhere}
+ .zc-loop-pages button{width:38px}
+}
