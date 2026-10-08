@@ -38,7 +38,7 @@ function Conversation({ progress, still }: { progress: MotionValue<number>; stil
 }
 
 const scenes = [
-  { id: "atendimento", label: "Atendimento", title: <>Cada conversa tem<br />uma história.</>, description: "Aluno ou interessado? A Zettas identifica o contexto, consulta as regras da academia e encaminha à sua equipe quando necessário.", foot: "Sua linguagem. Suas regras. Sua equipe no controle.", art: Conversation },
+  { id: "atendimento", label: "Atendimento com IA no WhatsApp", title: <>Cada conversa tem<br />uma história.</>, description: "Aluno ou interessado? A inteligência artificial identifica o contexto, responde conforme as regras da academia e encaminha à sua equipe quando necessário.", foot: "Sua linguagem. Suas regras. Sua equipe no controle.", art: Conversation },
   {
     id: "cobranca",
     label: "Cobrança",
@@ -123,9 +123,9 @@ export default function ScrollConcept() {
     <main>
       <section className="zc-hero" id="inicio">
         <div className="zc-hero-copy">
-          <p className="zc-hero-audience">Automação de WhatsApp para academias.</p>
+          <p className="zc-hero-audience">IA para academias. Atendimento com o seu jeito.</p>
           <h1>Sua academia<br />bem atendida.<br />Sua equipe<br />mais presente.</h1>
-          <p className="zc-hero-description">Do primeiro “quero conhecer” à mensalidade do aluno. Atendimento, cobrança e relatórios conectados à sua rotina.</p>
+          <p className="zc-hero-description">Atendimento com IA no WhatsApp, cobranças automáticas e relatórios integrados ao seu sistema. Do primeiro contato à mensalidade do aluno.</p>
           <div className="zc-hero-actions"><ContactLink placement="conceito_hero" className="zc-button" /><a href="#atendimento" className="zc-text-link">Ver na prática <ArrowDown size={18} /></a></div>
           <FormLink placement="hero_form" />
         </div>

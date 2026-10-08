@@ -12,6 +12,7 @@ const steps = [
 ];
 
 const questions = [
+  ["Como funciona a IA para academias da Zettas?", "Configuramos o atendimento no WhatsApp com as informações da sua academia: planos, modalidades, horários, campanhas e regras. A IA responde às dúvidas de alunos e interessados e encaminha à equipe os assuntos que precisam de atendimento humano. Cobranças e relatórios são definidos conforme as integrações disponíveis."],
   ["Preciso trocar o sistema da academia?", "A proposta é integrar à operação que você já tem. No diagnóstico, avaliamos a compatibilidade do seu sistema e os dados disponíveis para definir o que pode ser automatizado."],
   ["Minha equipe continua participando do atendimento?", "Sim. Definimos os assuntos e situações que precisam de atendimento humano. Sua equipe recebe o contexto da conversa para continuar o atendimento."],
   ["Como funcionam as cobranças automáticas?", "Configuramos os critérios, horários e mensagens com você. A operação consulta os dados disponíveis no sistema, seleciona as mensalidades elegíveis e envia a mensagem com o link de pagamento pelo WhatsApp."],

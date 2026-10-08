@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-export const alt = "Zettas — atendimento, cobrança e gestão para academias";
+export const alt = "Zettas — IA para academias: atendimento, cobrança e gestão";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 export default function OpenGraphImage() {
@@ -35,7 +35,7 @@ export default function OpenGraphImage() {
             color: "#38bdf8",
           }}
         >
-          Uma operação feita para academias
+          IA para academias. Atendimento com o seu jeito.
         </div>
         <div
           style={{

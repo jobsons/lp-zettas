@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import ScrollConcept from "@/components/gym/ScrollConcept";
 import "./conceito/concept.css";
 
+const pageTitle = "IA para academias: atendimento e cobrança | Zettas";
+const pageDescription = "IA para academias com atendimento personalizado no WhatsApp, cobranças automáticas e relatórios integrados ao seu sistema. Conheça a Zettas.";
+
 export const metadata: Metadata = {
-  title: { absolute: "Automação de WhatsApp para academias | Zettas" },
-  description:
-    "Automação de WhatsApp para academias: atendimento personalizado, cobranças automáticas e relatórios de gestão integrados ao seu sistema. Conheça a Zettas.",
+  title: { absolute: pageTitle },
+  description: pageDescription,
   alternates: { canonical: "https://zettas.ia.br/" },
   robots: {
     index: true,
@@ -17,9 +19,8 @@ export const metadata: Metadata = {
     locale: "pt_BR",
     url: "https://zettas.ia.br/",
     siteName: "Zettas",
-    title: "Automação de WhatsApp para academias | Zettas",
-    description:
-      "Atendimento, cobrança e gestão. Configurados para a rotina da sua academia.",
+    title: pageTitle,
+    description: pageDescription,
     images: [
       {
         url: "/opengraph-image",
@@ -31,8 +32,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Automação de WhatsApp para academias | Zettas",
-    description: "Atendimento personalizado, cobranças automáticas e relatórios para a rotina da sua academia.",
+    title: pageTitle,
+    description: pageDescription,
     images: ["/opengraph-image"],
   },
 };
@@ -62,7 +63,8 @@ export default function Home() {
         "@type": "WebPage",
         "@id": "https://zettas.ia.br/#webpage",
         url: "https://zettas.ia.br/",
-        name: "Automação de WhatsApp para academias | Zettas",
+        name: pageTitle,
+        description: pageDescription,
         inLanguage: "pt-BR",
         isPartOf: { "@id": "https://zettas.ia.br/#website" },
         about: { "@id": "https://zettas.ia.br/#service" },
@@ -71,9 +73,9 @@ export default function Home() {
       {
         "@type": "Service",
         "@id": "https://zettas.ia.br/#service",
-        name: "Automação de WhatsApp para academias",
-        serviceType: "Atendimento, cobranças automáticas e relatórios de gestão para academias",
-        description: "Operação personalizada com atendimento no WhatsApp, integração ao sistema da academia, cobranças automáticas e relatórios semanais e mensais.",
+        name: "IA para academias e automação de WhatsApp",
+        serviceType: "Atendimento com IA, cobranças automáticas e relatórios de gestão para academias",
+        description: "Operação personalizada com atendimento com inteligência artificial no WhatsApp, integração ao sistema da academia, cobranças automáticas e relatórios semanais e mensais.",
         provider: { "@id": "https://zettas.ia.br/#organization" },
         url: "https://zettas.ia.br/",
       },
