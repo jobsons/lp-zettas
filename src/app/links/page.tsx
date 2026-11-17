@@ -16,7 +16,7 @@ import { buildWhatsAppLink } from "@/lib/whatsapp";
 export default function LinksBioPage() {
   // Configurações do WhatsApp
   const phone = process.env.NEXT_PUBLIC_WHATSAPP_PHONE ?? "5547999035154";
-  const defaultWhatsAppMsg = "Olá! Vim pelo link da bio do Instagram e gostaria de mais detalhes.";
+  const defaultWhatsAppMsg = "Olá! Vim pelo Instagram da Zettas e quero conversar sobre o comercial da minha academia.";
   const linkWhatsAppDireto = buildWhatsAppLink({
     phone,
     message: defaultWhatsAppMsg,
@@ -62,8 +62,8 @@ export default function LinksBioPage() {
     <div className="min-h-screen w-full flex flex-col items-center justify-between py-12 px-4 md:px-6 relative overflow-hidden select-none">
 
       {/* Background neon elements */}
-      <div className="absolute top-[-10%] left-[-20%] w-[60%] h-[40%] rounded-full bg-cyan-500/10 blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-[-10%] right-[-20%] w-[60%] h-[40%] rounded-full bg-violet-500/10 blur-[120px] pointer-events-none" />
+      <div className="absolute top-[-10%] left-[-20%] w-[60%] h-[40%] rounded-full bg-emerald-500/10 blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-[-10%] right-[-20%] w-[60%] h-[40%] rounded-full bg-emerald-500/5 blur-[120px] pointer-events-none" />
 
       {/* Container Principal */}
       <main className="w-full max-w-md flex flex-col items-center z-10 flex-grow justify-center py-6">
@@ -76,8 +76,8 @@ export default function LinksBioPage() {
           className="flex flex-col items-center text-center mb-6"
         >
           {/* Badge de Verificação Oficial */}
-          <span className="inline-flex items-center justify-center bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider mb-3">
-            Links Oficiais
+          <span className="inline-flex items-center justify-center bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider mb-3">
+            Comercial para academias
           </span>
 
           {/* Logo Oficial Direta */}
@@ -95,8 +95,11 @@ export default function LinksBioPage() {
             />
           </div>
 
-          <p className="text-sm text-graphite-300 mt-2 max-w-[320px]">
-            Agentes de Inteligência Artificial para WhatsApp. Escalamos suas vendas e seu atendimento 24/7.
+          <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight leading-tight max-w-[360px]">
+            Organize o comercial da sua academia.
+          </h1>
+          <p className="text-sm text-graphite-300 mt-4 max-w-[360px] leading-relaxed">
+            Atendimento no WhatsApp, acompanhamento de interessados e relatórios semanais para orientar os próximos passos da equipe.
           </p>
         </motion.div>
 
@@ -113,27 +116,38 @@ export default function LinksBioPage() {
               href={linkWhatsAppDireto}
               target="_blank"
               rel="noopener noreferrer"
-              className="relative flex items-center gap-4 w-full p-4 rounded-2xl bg-[#25D366] text-white hover:bg-[#1ebe57] transition-all duration-300 shadow-[0_0_20px_rgba(37,211,102,0.25)] hover:shadow-[0_0_30px_rgba(37,211,102,0.4)] group overflow-hidden active:scale-[0.98]"
+              className="relative flex items-center gap-4 w-full p-4 rounded-2xl bg-[#25D366] text-[#082516] hover:bg-[#1ebe57] transition-all duration-300 shadow-[0_0_20px_rgba(37,211,102,0.25)] hover:shadow-[0_0_30px_rgba(37,211,102,0.4)] group overflow-hidden active:scale-[0.98]"
             >
               {/* Efeito Glow Pulsante */}
               <span className="absolute inset-0 w-full h-full bg-white/10 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-out" />
 
               <div className="flex-shrink-0 bg-white/20 p-2.5 rounded-xl">
-                <MessageCircle className="w-6 h-6 animate-pulse" />
+                <MessageCircle className="w-6 h-6" />
               </div>
 
               <div className="flex-grow text-left">
-                <span className="block text-xs font-semibold uppercase tracking-wider text-emerald-100 opacity-90">
-                  Contato Imediato
+                <span className="block text-xs font-semibold uppercase tracking-wider text-[#123c23] opacity-90">
+                  Vamos conversar
                 </span>
                 <span className="block text-base sm:text-lg font-bold leading-tight">
-                  Falar no WhatsApp agora
+                  Conversar sobre minha academia
                 </span>
               </div>
 
               <ChevronRight className="w-5 h-5 opacity-70 group-hover:translate-x-1 transition-transform" />
             </a>
           </motion.div>
+
+          <div className="grid grid-cols-1 gap-3">
+            <a href="https://www.instagram.com/reel/DfpHyYHAnKw/" target="_blank" rel="noopener noreferrer" className="rounded-xl border border-navy-700 bg-navy-900/40 p-4 text-left hover:border-emerald-500/60 transition-colors">
+              <span className="block font-semibold text-white">Veja o atendimento na prática ↗</span>
+              <span className="block mt-1 text-sm text-graphite-300">Da conversa com a IA à continuidade pela equipe. Demonstração adaptada.</span>
+            </a>
+            <a href="https://www.instagram.com/p/DfrsgzNiDwx/" target="_blank" rel="noopener noreferrer" className="rounded-xl border border-navy-700 bg-navy-900/40 p-4 text-left hover:border-emerald-500/60 transition-colors">
+              <span className="block font-semibold text-white">O que acompanhamos toda semana ↗</span>
+              <span className="block mt-1 text-sm text-graphite-300">Interessados, visitas, retornos pendentes e ações para a equipe.</span>
+            </a>
+          </div>
 
           {/* Botão Secundário: Formulário Tally */}
           <motion.div
@@ -153,15 +167,15 @@ export default function LinksBioPage() {
               <span className="absolute inset-0 w-full h-full bg-white/10 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-out" />
 
               <div className="flex-shrink-0 bg-white/20 p-2.5 rounded-xl">
-                <Sparkles className="w-6 h-6 animate-pulse" />
+                <Sparkles className="w-6 h-6" />
               </div>
 
               <div className="flex-grow text-left">
                 <span className="block text-xs font-semibold uppercase tracking-wider text-cyan-200 opacity-90">
-                  Diagnóstico Gratuito
+                  Prefere que a gente entre em contato?
                 </span>
                 <span className="block text-base sm:text-lg font-bold leading-tight">
-                  Entraremos em contato com você
+                  Deixar meus dados
                 </span>
               </div>
 
@@ -182,7 +196,7 @@ export default function LinksBioPage() {
               <div className="bg-navy-800 p-2 rounded-lg text-graphite-400 group-hover:text-white group-hover:bg-navy-700 transition-colors">
                 <Globe className="w-4 h-4" />
               </div>
-              <span className="flex-grow text-left">Conhecer nosso site completo</span>
+              <span className="flex-grow text-left">Entender como funciona</span>
               <ChevronRight className="w-4 h-4 opacity-50 group-hover:translate-x-0.5 transition-transform" />
             </Link>
           </motion.div>
